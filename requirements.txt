@@ -1,0 +1,13 @@
+dash
+dash_bootstrap_components
+dash_core_components
+dash_html_components
+dash-extensions
+dash_daq
+dash-auth
+plotly.express
+flask_caching
+numpy
+dash-pivottable
+unidecode
+
