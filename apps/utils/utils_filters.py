@@ -43,15 +43,6 @@ card_of_filters = dbc.Card([
                     value="",style={'color': 'black'}),
             ]),
             dbc.FormGroup([
-                dbc.Label("Orden"),
-            	dcc.Checklist(
-    				options=[
-    				    {'label': standarised_string(x), 'value': x} for x in Orden.dropna().unique()
-    				],
-    				value=list(Orden.dropna().unique()),style={"display":"block","width": '50%'}
-					)  
-            ]),
-            dbc.FormGroup([
             dcc.Upload(
                 id='upload-data',
                 children=html.Div([

@@ -8,6 +8,7 @@ from apps.utils import utils_plots
 from apps.utils import utils_filters
 from apps.utils import utils_tree_map
 from apps.utils import utils_cardskpi
+from apps.utils import utils_pivot_table
 
 
 
@@ -34,6 +35,11 @@ layout= html.Div([
                         dbc.Col([utils_tree_map.grafica,], lg='8')
                         ])
                     ],lg=10),
-                ])
+                ]),
+            dbc.Row([html.Hr()]),
+            
+            dbc.Row([
+                dbc.Container([utils_pivot_table.layout_pivot_table])
+            ])
 
                 ]) 

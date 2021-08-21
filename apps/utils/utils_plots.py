@@ -25,6 +25,7 @@ fig.update_traces(
 )
 
 grafica = dcc.Graph(figure=fig,
+                    id="Mapa",
      config={
             'displayModeBar': False,
             'staticPlot': False,

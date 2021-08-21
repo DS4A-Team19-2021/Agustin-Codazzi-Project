@@ -22,11 +22,11 @@ fig.update_layout(
     font_color="#FFFFFF",
     title_font_color="#FFFFFF",
     #font=dict(size=18),
-    margin=dict(l=0, r=15, t=0, b=0)
+    margin=dict(l=0, r=0, t=0, b=0)
     )
 
 
-grafica = dcc.Graph(figure=fig,
+grafica = dcc.Graph(figure=fig,id="tree_map",
      config={
             'displayModeBar': False,
             'fillFrame':False,
