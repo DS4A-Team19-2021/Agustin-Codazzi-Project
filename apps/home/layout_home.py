@@ -30,16 +30,18 @@ layout= html.Div([
                         #offset espacio que se deja desde la izquierda
                     ]),
                     dbc.Row([html.Hr()]),
-                    html.H1("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
                         dbc.Col([utils_tree_map.grafica,], lg='8')
                         ])
                     ],lg=10),
                 ]),
             dbc.Row([html.Hr()]),
-            
             dbc.Row([
-                dbc.Container([utils_pivot_table.layout_pivot_table])
-            ])
+
+                dbc.Container([
+                    html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    utils_pivot_table.layout_pivot_table],fluid=False)
+            ]),
 
                 ]) 
