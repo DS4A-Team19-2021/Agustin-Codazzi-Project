@@ -29,15 +29,15 @@ layout= html.Div([
                     dbc.Row([
                         dbc.Col([
 
-                          utils_plots.Make_map(df)],lg='9'),
+                          utils_plots.Make_map(df)],lg='10'),
 
-                        dbc.Col([utils_cardskpi.Card_total(12110)],width={"size": 3, "offset": 0})
+                        dbc.Col([utils_cardskpi.Card_total(len(df.dropna()))],width={"size": 2, "offset": 0})
                         #offset espacio que se deja desde la izquierda
                     ]),
                     dbc.Row([html.Hr()]),
                     html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
-                        dbc.Col([utils_tree_map.grafica,], lg='8')
+                        dbc.Col([utils_tree_map.Make_tree_map(df),], lg='9')
                         ])
                     ],lg=10),
                 ]),
