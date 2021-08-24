@@ -60,24 +60,8 @@ card_of_filters = dbc.Card([
                     'margin': '10px'
                     },
         # Allow multiple files to be uploaded
-                multiple=False
+                multiple=True
                 )]),
-            dbc.FormGroup([
-                dbc.Button("Descargar",id="Boton_download", outline=True,color='primary'
-                          ,active=False,disabled=True,
-                           style={
-                            'width': '100%',
-                            'height': '60px',
-                            'lineHeight': '10px',
-                            'borderWidth': '1px',
-                            'borderStyle': 'dashed',
-                            'borderRadius': '5px',
-                            'textAlign': 'center',
-                            'margin': '10px',
-                            'font-size': 'large'
-                           }),
-                dcc.Download(id="Download_file")
-                ])
     ]),
 ],color="secondary")	
 

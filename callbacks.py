@@ -11,7 +11,7 @@ from app import app
 # #call modules needed for callbacks
 from apps.home import layout_home
 
-df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
+#df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
 
 #cache configuration
 TIMEOUT = 240
@@ -41,11 +41,32 @@ def register_callbacks(app):
             ],fluid=False
         )
 
+    def parse_contents(contents, filename, date):
+        content_type, content_string = contents.split(',')
+        decoded = base64.b64decode(content_string)
+        columns_to_consider=["CLIMA_AMBIENTAL", "PAISAJE",
+                         'TIPO_RELIEVE', 'FORMA_TERRENO',
+                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                         "LATITUD","LONGITUD","ALTITUD","CODIGO"]
+        try:
+            if 'csv' in filename:
+                df = pd.read_csv(io.StringIO(decoded.decode('utf-8')))
+                df = df[columns_to_consider]
 
-    @app.callback(Output("Download_file", "data"),
-                  [Input("Boton_download", "n_clicks")],
-                  prevent_initial_call=True)
-    def generate_csv(n_nlicks):
-        return dcc.send_data_frame(df.to_csv, filename="prueba.csv")
+            elif 'xls' in filename:
+                # Assume that the user uploaded an excel file
+                df = pd.read_excel(io.BytesIO(decoded))
+                df = df[columns_to_consider]
+
+            return df, filename, date
+        except Exception as e:
+            return pd.DataFrame([]), filename, date
+
+    #@app.callback(Output("Download_file", "data"),
+    #              [Input("Boton_download", "n_clicks")],
+    #              prevent_initial_call=True)
+    #def generate_csv(n_nlicks):
+    #    return dcc.send_data_frame(df.to_csv, filename="prueba.csv")
+
     #return {"color":"primary", }
     

@@ -2,14 +2,19 @@
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
-
+import pandas as pd
 from apps.utils import utils_cardskpi
 from apps.utils import utils_plots
 from apps.utils import utils_filters
 from apps.utils import utils_tree_map
 from apps.utils import utils_cardskpi
 from apps.utils import utils_pivot_table
+from apps.utils.utils_getdata import get_data
 
+df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
+                         'TIPO_RELIEVE', 'FORMA_TERRENO',
+                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                         "LATITUD","LONGITUD","ALTITUD","CODIGO"]).dropna()
 
 
 
@@ -24,7 +29,7 @@ layout= html.Div([
                     dbc.Row([
                         dbc.Col([
 
-                          utils_plots.grafica],lg='9'),
+                          utils_plots.Make_map(df)],lg='9'),
 
                         dbc.Col([utils_cardskpi.Card_total(12110)],width={"size": 3, "offset": 0})
                         #offset espacio que se deja desde la izquierda
@@ -41,7 +46,8 @@ layout= html.Div([
 
                 dbc.Container([
                     html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                    utils_pivot_table.layout_pivot_table],fluid=False)
+                    utils_pivot_table.make_pivot_table(df)],id="Table_data")
             ]),
+            dbc.Row([html.Hr()])
 
                 ]) 
