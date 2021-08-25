@@ -60,7 +60,7 @@ card_of_filters = dbc.Card([
                     'margin': '10px'
                     },
         # Allow multiple files to be uploaded
-                multiple=True
+                multiple=False
                 )]),
     ]),
 ],color="secondary")	
