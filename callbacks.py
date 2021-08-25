@@ -1,7 +1,7 @@
 import base64
 import datetime
 import io
-
+import pandas as pd
 #basic libraries
 from dash.dependencies import Input, Output, State
 from flask_caching import Cache
@@ -9,11 +9,12 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 from apps.utils.utils_getdata import get_data
 from apps.utils.utils_pivot_table import make_pivot_table
+from apps.utils.utils_plots import Make_map
 import dash_core_components as dcc
 from dash.exceptions import PreventUpdate
 #main dash instance
 from app import app
-import pandas as pd
+
 
 # #call modules needed for callbacks
 from apps.home import layout_home
@@ -73,7 +74,7 @@ def register_callbacks(app):
                   Input('upload-data', 'contents'),
                   State('upload-data', 'filename'),
                   State('upload-data', 'last_modified'))
-    def update_output(list_of_contents, list_of_names, list_of_dates):
+    def update_table_upload(list_of_contents, list_of_names, list_of_dates):
         if list_of_contents is not None:
             df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
             if len(df)==0:
@@ -93,6 +94,21 @@ def register_callbacks(app):
 
         else:
             raise PreventUpdate
+
+    @app.callback(Output('Mapa', 'figure'),
+                  Input('upload-data', 'contents'),
+                  State('upload-data', 'filename'),
+                  State('upload-data', 'last_modified'))
+    def update_map_upload(list_of_contents, list_of_names, list_of_dates):
+        if list_of_contents is not None:
+            df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
+            if len(df) == 0:
+                raise PreventUpdate
+            else:
+                return Make_map(df)
+        else:
+            raise PreventUpdate
+
 
     #@app.callback(Output("Download_file", "data"),
     #"Table_data"

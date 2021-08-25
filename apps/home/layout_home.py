@@ -27,7 +27,7 @@ layout= html.Div([
                 dbc.Col([
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
-                        dbc.Col([
+                        dbc.Col([dbc.Container([
                                 dcc.Graph(figure=utils_plots.Make_map(df),
                                 id="Mapa",
                                 config={
@@ -36,9 +36,9 @@ layout= html.Div([
                                         'staticPlot': False,
                                         'fillFrame':False,
                                         'frameMargins': 0,
-                                        'responsive': True,
+                                        'responsive': False,
                                         'showTips':True
-                                    })
+                                    })])
                         ],lg='10'),
 
                         dbc.Col([
@@ -51,9 +51,13 @@ layout= html.Div([
                         #offset espacio que se deja desde la izquierda
                     ],no_gutters=True),
                     dbc.Row([html.Hr()]),
-                    html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+
                     dbc.Row([
+                        dbc.Container([
+                                html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                        ],fluid=True),
                         dbc.Col([
+                            dbc.Container([
                             dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
                                       id="tree_map",
                                       config={
@@ -61,7 +65,7 @@ layout= html.Div([
                                              'fillFrame':False,
                                              'frameMargins': 0,
                                              'responsive': True
-                                         }),], width={"size": 9, "offset": 0,})
+                                         })]),], width={"size": 9, "offset": 0,})
                         ],no_gutters=True)
                     ],lg=10),
                 ]),
