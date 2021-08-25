@@ -8,8 +8,16 @@ from apps.utils.utils_getdata import get_data
 def Make_map(df):
     new_df=df[["LATITUD","LONGITUD","ORDEN","ALTITUD"]].dropna()
 
-    fig=px.scatter_mapbox(new_df, lat="LATITUD", lon="LONGITUD", color= "ORDEN", size_max=15, zoom=6
-                      ,labels={"ORDEN": "ORDEN", "ALTITUD": "medal"},custom_data=["ORDEN","ALTITUD"])
+    fig=px.scatter_mapbox(new_df, lat="LATITUD", lon="LONGITUD", color= "ORDEN", size_max=15, zoom=7
+                      ,labels={"ORDEN": "ORDEN", "ALTITUD": "medal"},custom_data=["ORDEN","ALTITUD"],
+                          color_discrete_map={
+                              "Andisol": '#e74C3C',
+                              "Entisol": '#3498DB',
+                              "Histosol": '#00BC8C',
+                              "Inceptisol": '#375A7F',
+                              "Molisol": '#F39C12',
+                          }
+                          )
     fig.update_layout(
         plot_bgcolor="black",
         mapbox_style="satellite-streets",
@@ -22,16 +30,7 @@ def Make_map(df):
         hovertemplate='Orden: %{customdata[0]}' + '<br> Altitud: %{customdata[1]} '
     )
 
-    grafica = dcc.Graph(figure=fig,
-                        id="Mapa",
-                        config={
-                                'mapboxAccessToken':"pk.eyJ1IjoiamFtb250YW5hYyIsImEiOiJja3M5cTdqNjQweDJsMnZwZWhya3doZGhxIn0.wzXfA9bXf2nwKH1lbkLSPA",
-                                'displayModeBar': False,
-                                'staticPlot': False,
-                                'fillFrame':False,
-                                'frameMargins': 0,
-                                'responsive': True
-                            })
-    return grafica
+
+    return fig
 
 

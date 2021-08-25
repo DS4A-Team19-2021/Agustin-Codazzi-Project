@@ -36,12 +36,4 @@ def Make_tree_map(df):
         margin = dict(t=50, l=25, r=25, b=25)
         )
 
-
-    grafica = dcc.Graph(figure=fig,id="tree_map",
-         config={
-                'displayModeBar': False,
-                'fillFrame':False,
-                'frameMargins': 0,
-                'responsive': True
-            })
-    return grafica
+    return fig

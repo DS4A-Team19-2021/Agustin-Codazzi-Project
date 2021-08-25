@@ -28,17 +28,38 @@ layout= html.Div([
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
                         dbc.Col([
+                                dcc.Graph(figure=utils_plots.Make_map(df),
+                                id="Mapa",
+                                config={
+                                        'mapboxAccessToken':open(".mapbox_token").read(),
+                                        'displayModeBar': False,
+                                        'staticPlot': False,
+                                        'fillFrame':False,
+                                        'frameMargins': 0,
+                                        'responsive': True,
+                                        'showTips':True
+                                    })
+                        ],lg='10'),
 
-                          utils_plots.Make_map(df)],lg='10'),
-
-                        dbc.Col([utils_cardskpi.Card_total(len(df.dropna()))],width={"size": 2, "offset": 0})
+                        dbc.Col([
+                            
+                            utils_cardskpi.Card_total(len(df.dropna()))
+                        ],width={"size": 2, "offset": 0})
                         #offset espacio que se deja desde la izquierda
                     ]),
                     dbc.Row([html.Hr()]),
                     html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
-                        dbc.Col([utils_tree_map.Make_tree_map(df),], lg='9')
-                        ])
+                        dbc.Col([
+                            dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
+                                      id="tree_map",
+                                      config={
+                                             'displayModeBar': False,
+                                             'fillFrame':False,
+                                             'frameMargins': 0,
+                                             'responsive': True
+                                         }),], width={"size": 9, "offset": 0,})
+                        ],no_gutters=True)
                     ],lg=10),
                 ]),
             dbc.Row([html.Hr()]),
