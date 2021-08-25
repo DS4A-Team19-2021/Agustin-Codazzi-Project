@@ -42,11 +42,14 @@ layout= html.Div([
                         ],lg='10'),
 
                         dbc.Col([
-                            
-                            utils_cardskpi.Card_total(len(df.dropna()))
+                            dbc.ListGroup([
+                                            dbc.ListGroupItem(
+                                                children=utils_cardskpi.Card_total(len(df)),
+                                                id="carta_totales",color="#375A7F")
+                                        ])
                         ],width={"size": 2, "offset": 0})
                         #offset espacio que se deja desde la izquierda
-                    ]),
+                    ],no_gutters=True),
                     dbc.Row([html.Hr()]),
                     html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([

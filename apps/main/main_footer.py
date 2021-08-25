@@ -1,8 +1,8 @@
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
-
 github_logo="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+
 correlation_one_logo="https://www.correlation-one.com/hubfs/c1logo_color.png"
 #dash_logo="https://dash.plotly.com/docs/assets/images/light_plotly_dash_logo.png"
 

@@ -1,10 +1,5 @@
 import plotly.express as px
-import dash_core_components as dcc
-import pandas as pd
-from apps.utils.utils_getdata import get_data
 
-
-#df=get_data(["LATITUD","LONGITUD","ORDEN","ALTITUD"]).dropna()
 def Make_map(df):
     new_df=df[["LATITUD","LONGITUD","ORDEN","ALTITUD"]].dropna()
 

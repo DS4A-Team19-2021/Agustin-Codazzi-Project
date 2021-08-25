@@ -1,11 +1,5 @@
 import plotly.express as px
-import dash_core_components as dcc
-import plotly.graph_objects as go
-import dash_bootstrap_components as dbc
-import pandas as pd
-from apps.utils.utils_getdata import get_data
 
-#df=get_data(['PAISAJE','CLIMA_AMBIENTAL','FORMA_TERRENO', 'CLASIFICACION_TAXONOMICA','ORDEN']).dropna()
 def Make_tree_map(df):
     columns_in_map = ["CLIMA_AMBIENTAL", "PAISAJE", "CODIGO", 'TIPO_RELIEVE', 'FORMA_TERRENO',
                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN', ]
@@ -21,8 +15,7 @@ def Make_tree_map(df):
                 "Inceptisol": '#375A7F',
                 "Molisol": '#F39C12',
                 })
-    #fig.update_traces(root_color=)
-    #root_color="#9CC1EF"
+
     fig.update_traces(name='categories',
                       root_color='#9CC1EF',
                       #texttemplate="%{label}<br>%{value}<br>",
