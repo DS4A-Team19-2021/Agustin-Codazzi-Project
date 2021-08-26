@@ -5,6 +5,7 @@ import pandas as pd
 #basic libraries
 from dash.dependencies import Input, Output, State
 from flask_caching import Cache
+import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from apps.utils.utils_getdata import get_data
@@ -72,34 +73,13 @@ def register_callbacks(app):
         except Exception as e:
             return pd.DataFrame([]), filename, date
 
-    @app.callback(Output('Table_data', 'children'),
-                  Input('upload-data', 'contents'),
-                  State('upload-data', 'filename'),
-                  State('upload-data', 'last_modified'))
-    def update_table_upload(list_of_contents, list_of_names, list_of_dates):
-        if list_of_contents is not None:
-            df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
-            if len(df)==0:
-                return html.Div([
-                html.H2('There was an error processing this file. File {}, uploaded {}'.format(filename,date)),
-                html.Br(),
-                html.H2('Double check that you have the right format or your file has the needed Columns')]
-                ,className="text-danger",style={"align-text":"center"})
-            else:
-                return html.Div([
-                    html.H2("Tabla Dinamica", className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                    html.H4("Archivo Cargado: {}".format(filename),  className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                    html.H5("Fecha de Carga: {}".format(datetime.datetime.fromtimestamp(date)),  className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                    make_pivot_table(df),
-                ])
 
-
-        else:
-            raise PreventUpdate
-
-    @app.callback(Output('Mapa', 'figure'),Output('tree_map', 'figure'),
-                  Output("filtro_clima","options"),Output("filtro_paisaje","options"),
-                  Output("filtro_forma_terreno", "options"),Output("filtro_material_parental","options"),
+    @app.callback(Output('Mapa', 'figure'), Output('tree_map', 'figure'),
+                  Output("carta_datos","children"),
+                  Output("filtro_clima","options"), Output("filtro_paisaje","options"),
+                  Output("filtro_forma_terreno", "options"), Output("filtro_material_parental","options"),
+                  Output('Table_data', 'children'), Output("the_alert", "children"),
+                  Output("main_alert", "children"),
                   Input('upload-data', 'contents'),
                   State('upload-data', 'filename'),
                   State('upload-data', 'last_modified'))
@@ -107,13 +87,45 @@ def register_callbacks(app):
         if list_of_contents is not None:
             df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
             if len(df) == 0:
-                raise PreventUpdate
+                alert1 = dbc.Alert("There was an error processing this file.",
+                                  color="danger",dismissable=True,
+                                  duration=5000)
+                alert2 = dbc.Alert([html.H4("An error was encountered when parsing the file {}".format(filename)),
+                                    html.Hr(),
+                                    html.P("Please double check that your file is compatible with the formats (csv,xls,xlsx,xlsm)"
+                                           "these formats are only supported at the moment so make sure you are using the right format."
+                                           "In case you are using the right format make sure your file has the required columns.",className="mb-0")
+                                    ],
+                                   color="danger",dismissable=True,
+                                   duration=7000)
+                error_section=html.Div([
+                                html.H2('There was an error processing this file. File {}, uploaded {}'.format(filename,date)),
+                                html.Br(),
+                                html.H2('Double check that you have the right format or your file has the needed Columns')]
+                                ,className="text-danger",style={"align-text":"center"})
+                return dash.no_update, dash.no_update, dash.no_update,\
+                       dash.no_update, dash.no_update,\
+                       dash.no_update, dash.no_update,\
+                       error_section, alert1,alert2
             else:
-                return Make_map(df),Make_tree_map(df), \
+                table_children=html.Div([
+                    html.H2("Tabla Dinamica", className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    html.H4("Archivo Cargado: {}".format(filename),  className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    html.H5("Fecha de Carga: {}".format(datetime.datetime.fromtimestamp(date)),  className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    make_pivot_table(df)
+                ])
+                good_alarm=dbc.Alert([html.H4("The file {} was successfully processed".format(filename)),],
+                                   color="success",dismissable=True,
+                                   duration=5000)
+                mini_alarm= dbc.Alert("File proccesed",
+                                  color="success",dismissable=True,
+                                  duration=5000)
+                return Make_map(df),Make_tree_map(df), len(df), \
                        make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()), \
                        make_options_filters(df["PAISAJE"].dropna().unique()), \
                        make_options_filters(df["FORMA_TERRENO"].dropna().unique()), \
-                       make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique())
+                       make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),\
+                       table_children, mini_alarm, good_alarm
         else:
             raise PreventUpdate
 

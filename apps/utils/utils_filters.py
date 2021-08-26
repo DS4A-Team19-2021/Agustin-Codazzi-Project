@@ -40,6 +40,7 @@ def make_filters(df):
                         options=make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),
                         value="",style={'color': 'black'}),
                 ]),
+                html.Div(id="the_alert", children=[]),
                 dbc.FormGroup([
                 dcc.Upload(
                     id='upload-data',

@@ -26,6 +26,7 @@ layout= html.Div([
 
                     ],lg=2,id="Filter_section"),
                 dbc.Col([
+                    html.Div(id="main_alert", children=[]),
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
                         dbc.Col([dbc.Container([
@@ -45,7 +46,13 @@ layout= html.Div([
                         dbc.Col([
                             dbc.ListGroup([
                                             dbc.ListGroupItem(
-                                                children=utils_cardskpi.Card_total(len(df)),
+                                                [
+                                                    dbc.ListGroupItemHeading("Numero de Observaciones",
+                                                                             style={"font-size": "1.3em"}),
+                                                    dbc.ListGroupItemText(len(df), style={"font-size": "2.5em",
+                                                                                        "align": "right"},
+                                                                          id="carta_datos")
+                                                ],
                                                 id="carta_totales",color="#375A7F")
                                         ])
                         ],width={"size": 2, "offset": 0})
