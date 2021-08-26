@@ -5,7 +5,8 @@ github_logo="https://github.githubassets.com/images/modules/logos_page/GitHub-Lo
 
 correlation_one_logo="https://www.correlation-one.com/hubfs/c1logo_color.png"
 #dash_logo="https://dash.plotly.com/docs/assets/images/light_plotly_dash_logo.png"
-plotly_logo="https://symbols-electrical.getvecta.com/stencil_92/6_plotly-icon.9c7261a075.svg"
+plotly_logo="https://dash.plotly.com/docs/assets/images/light_plotly_dash_logo.png"
+#"https://symbols-electrical.getvecta.com/stencil_92/6_plotly-icon.9c7261a075.svg"
 dash_logo="https://plotly-marketing-website.cdn.prismic.io/plotly-marketing-website/948b6663-9429-4bd6-a4cc-cb33231d4532_logo-plotly.svg"
 info_general = html.Div([
         dcc.Markdown('''
@@ -33,7 +34,7 @@ layout= html.Div([
                 ,
                 dbc.Col([
                     html.A(
-                        html.Img(src=plotly_logo, height="30px")
+                        html.Img(src=plotly_logo, height="40px")
                         ,href="https://dash.plotly.com/")
                     ])
                 ],no_gutters=False)

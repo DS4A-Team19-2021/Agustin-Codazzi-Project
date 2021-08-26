@@ -22,8 +22,9 @@ layout= html.Div([
             dbc.Row([html.Hr()]), # primera fila se deja vacia
             dbc.Row([
                 dbc.Col([
-                    utils_filters.card_of_filters
-                    ],lg=2),
+                    utils_filters.make_filters(df)
+
+                    ],lg=2,id="Filter_section"),
                 dbc.Col([
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([

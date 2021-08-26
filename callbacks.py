@@ -11,6 +11,7 @@ from apps.utils.utils_getdata import get_data
 from apps.utils.utils_pivot_table import make_pivot_table
 from apps.utils.utils_plots import Make_map
 from apps.utils.utils_tree_map import Make_tree_map
+from apps.utils.utils_filters import make_filters, make_options_filters
 import dash_core_components as dcc
 from dash.exceptions import PreventUpdate
 #main dash instance
@@ -96,33 +97,29 @@ def register_callbacks(app):
         else:
             raise PreventUpdate
 
-    @app.callback(Output('Mapa', 'figure'),
+    @app.callback(Output('Mapa', 'figure'),Output('tree_map', 'figure'),
+                  Output("filtro_clima","options"),Output("filtro_paisaje","options"),
+                  Output("filtro_forma_terreno", "options"),Output("filtro_material_parental","options"),
                   Input('upload-data', 'contents'),
                   State('upload-data', 'filename'),
                   State('upload-data', 'last_modified'))
-    def update_map_upload(list_of_contents, list_of_names, list_of_dates):
+    def update_maps(list_of_contents, list_of_names, list_of_dates):
         if list_of_contents is not None:
             df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
             if len(df) == 0:
                 raise PreventUpdate
             else:
-                return Make_map(df)
+                return Make_map(df),Make_tree_map(df), \
+                       make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()), \
+                       make_options_filters(df["PAISAJE"].dropna().unique()), \
+                       make_options_filters(df["FORMA_TERRENO"].dropna().unique()), \
+                       make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique())
         else:
             raise PreventUpdate
 
-    @app.callback(Output('tree_map', 'figure'),
-                  Input('upload-data', 'contents'),
-                  State('upload-data', 'filename'),
-                  State('upload-data', 'last_modified'))
-    def update_map_upload(list_of_contents, list_of_names, list_of_dates):
-        if list_of_contents is not None:
-            df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
-            if len(df) == 0:
-                raise PreventUpdate
-            else:
-                return Make_tree_map(df)
-        else:
-            raise PreventUpdate
+
+
+
 
     #@app.callback(Output("Download_file", "data"),
     #"Table_data"
