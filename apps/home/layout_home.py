@@ -19,6 +19,14 @@ df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
 
 
 layout= html.Div([
+            #dbc.Row(dbc.Col(
+            #    dbc.Spinner(children=[dcc.Graph(id="loading-output")], size="lg", color="primary", type="border", fullscreen=True,),
+                # spinner_style={"width": "10rem", "height": "10rem"}),
+                # spinnerClassName="spinner"),
+                # dcc.Loading(children=[dcc.Graph(id="loading-output")], color="#119DFF", type="dot", fullscreen=True,),
+
+            #    width={'size': 12, 'offset': 0}),
+            #),
             dbc.Row([html.Hr()]), # primera fila se deja vacia
             dbc.Row([
                 dbc.Col([
@@ -30,6 +38,7 @@ layout= html.Div([
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
                         dbc.Col([dbc.Container([
+                            dbc.Spinner(children=[
                                 dcc.Graph(figure=utils_plots.Make_map(df),
                                 id="Mapa",
                                 config={
@@ -40,7 +49,8 @@ layout= html.Div([
                                         'frameMargins': 0,
                                         'responsive': False,
                                         'showTips':True
-                                    })])
+                                    })], size="lg", color="primary", type="border", fullscreen=True,)
+                        ])
                         ],lg='10'),
 
                         dbc.Col([
