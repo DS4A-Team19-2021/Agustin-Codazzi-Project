@@ -64,7 +64,7 @@ layout= html.Div([
                                              'displayModeBar': False,
                                              'fillFrame':False,
                                              'frameMargins': 0,
-                                             'responsive': True
+                                             'responsive': False
                                          })]),], width={"size": 9, "offset": 0,})
                         ],no_gutters=True)
                     ],lg=10),

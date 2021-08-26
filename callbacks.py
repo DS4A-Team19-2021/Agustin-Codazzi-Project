@@ -10,6 +10,7 @@ import dash_bootstrap_components as dbc
 from apps.utils.utils_getdata import get_data
 from apps.utils.utils_pivot_table import make_pivot_table
 from apps.utils.utils_plots import Make_map
+from apps.utils.utils_tree_map import Make_tree_map
 import dash_core_components as dcc
 from dash.exceptions import PreventUpdate
 #main dash instance
@@ -48,7 +49,7 @@ def register_callbacks(app):
                 html.P(f"Check again what you are requesting")
             ],fluid=False
         )
-
+    #Callbacks definidos para la carga de un archivo
     def parse_contents(contents, filename, date):
         content_type, content_string = contents.split(',')
         decoded = base64.b64decode(content_string)
@@ -109,6 +110,19 @@ def register_callbacks(app):
         else:
             raise PreventUpdate
 
+    @app.callback(Output('tree_map', 'figure'),
+                  Input('upload-data', 'contents'),
+                  State('upload-data', 'filename'),
+                  State('upload-data', 'last_modified'))
+    def update_map_upload(list_of_contents, list_of_names, list_of_dates):
+        if list_of_contents is not None:
+            df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
+            if len(df) == 0:
+                raise PreventUpdate
+            else:
+                return Make_tree_map(df)
+        else:
+            raise PreventUpdate
 
     #@app.callback(Output("Download_file", "data"),
     #"Table_data"
