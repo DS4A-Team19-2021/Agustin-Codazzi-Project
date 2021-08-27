@@ -6,13 +6,13 @@ import dash_auth
 import pathlib
 #callbacks import
 from Dash_IGAC.callbacks import register_callbacks
-
+from dash.dependencies import Input, Output, State
 #dash instance
 from Dash_IGAC.app import app
 import dash
 #Dash custom modules
 from Dash_IGAC.apps.main import main_nav, main_content, main_footer
-
+from Dash_IGAC.apps.home import layout_home
 def create_dash_app(routes_pathname_prefix: str = None) -> dash.Dash:
     #Basic auth definition
     USERNAMEINFO = [['user','12345']]
@@ -32,6 +32,7 @@ def create_dash_app(routes_pathname_prefix: str = None) -> dash.Dash:
 
     #Callbacks register
     register_callbacks(app)
+
     return app
 
 
