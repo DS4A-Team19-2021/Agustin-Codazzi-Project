@@ -1,3 +1,5 @@
+uvicorn
+fastapi
 dash
 dash_bootstrap_components
 dash_core_components
@@ -10,4 +12,5 @@ flask_caching
 numpy
 dash-pivottable
 unidecode
+
 

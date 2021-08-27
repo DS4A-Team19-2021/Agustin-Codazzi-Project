@@ -3,11 +3,9 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import pandas as pd
-from apps.utils import utils_cardskpi
 from apps.utils import utils_plots
 from apps.utils import utils_filters
 from apps.utils import utils_tree_map
-from apps.utils import utils_cardskpi
 from apps.utils import utils_pivot_table
 from apps.utils.utils_getdata import get_data
 
@@ -49,7 +47,8 @@ layout= html.Div([
                                         'frameMargins': 0,
                                         'responsive': False,
                                         'showTips':True
-                                    })], size="lg", color="primary", type="border", fullscreen=True,)
+                                    })], size="lg", color="primary", type="border",
+                                fullscreen=True)
                         ])
                         ],lg='10'),
 
