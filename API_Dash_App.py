@@ -4,6 +4,7 @@ from fastapi.middleware.wsgi import WSGIMiddleware
 from typing import Optional
 from Dash_IGAC.index import create_dash_app
 from pydantic import BaseModel
+from Dash_IGAC.callbacks import register_callbacks
 import pickle
 import numpy as np
 
@@ -23,6 +24,7 @@ def get_status():
     return {"status": "ok"}
 
 dash_app = create_dash_app(routes_pathname_prefix="/")
+register_callbacks(dash_app)
 app.mount("/", WSGIMiddleware(dash_app.server))
 
 
@@ -30,5 +32,5 @@ if __name__ == "__main__":
 
     # Run the app with uvicorn ASGI server asyncio frameworks. That basically responds to request on parallel and faster
 
-    uvicorn.run("API_Dash_App:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("API_Dash_App:app", host="0.0.0.0", port=8000, reload=True,log_level="info")
 

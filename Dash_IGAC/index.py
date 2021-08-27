@@ -17,9 +17,6 @@ def create_dash_app(routes_pathname_prefix: str = None) -> dash.Dash:
     #Basic auth definition
     USERNAMEINFO = [['user','12345']]
     auth = dash_auth.BasicAuth(app,USERNAMEINFO)
-    # Path
-    BASE_PATH = pathlib.Path(__file__).parent.resolve()
-    server = app.server
     #main layout
     app.layout = html.Div(className='wrapper',
         children=[
@@ -31,7 +28,7 @@ def create_dash_app(routes_pathname_prefix: str = None) -> dash.Dash:
     )
 
     #Callbacks register
-    register_callbacks(app)
+    #register_callbacks(app)
 
     return app
 
