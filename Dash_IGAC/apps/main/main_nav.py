@@ -3,7 +3,6 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
-from app import app
 IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
 github_logo="https://github.com/jamontanac/Tesis_Master/raw/master/GitHub_logo.png"
 correlation_one_logo="https://www.correlation-one.com/hubfs/c1logo_color.png"

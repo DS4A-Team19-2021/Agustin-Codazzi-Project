@@ -2,7 +2,7 @@
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
-from apps.utils.utils_getdata import standarised_string
+from Dash_IGAC.apps.utils.utils_getdata import standarised_string
 
 def make_options_filters(data):
     return [{"label":x,"value":x} for x in data]

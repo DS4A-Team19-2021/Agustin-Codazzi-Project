@@ -3,11 +3,11 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import pandas as pd
-from apps.utils import utils_plots
-from apps.utils import utils_filters
-from apps.utils import utils_tree_map
-from apps.utils import utils_pivot_table
-from apps.utils.utils_getdata import get_data
+from Dash_IGAC.apps.utils import utils_plots
+from Dash_IGAC.apps.utils import utils_filters
+from Dash_IGAC.apps.utils import utils_tree_map
+from Dash_IGAC.apps.utils import utils_pivot_table
+from Dash_IGAC.apps.utils.utils_getdata import get_data
 
 df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
                          'TIPO_RELIEVE', 'FORMA_TERRENO',

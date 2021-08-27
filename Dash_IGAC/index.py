@@ -5,34 +5,32 @@ import dash_html_components as html
 import dash_auth
 
 #callbacks import
-from callbacks import register_callbacks
+from Dash_IGAC.callbacks import register_callbacks
 
 #dash instance
-from app import app
-from app import server
-
+from Dash_IGAC.app import app
+from Dash_IGAC.app import server
+import dash
 #Dash custom modules
-from apps.main import main_nav, main_content, main_footer
+from Dash_IGAC.apps.main import main_nav, main_content, main_footer
 
-#Basic auth definition
-USERNAMEINFO = [['user','12345']]
-auth = dash_auth.BasicAuth(app,USERNAMEINFO)
+def create_dash_app(routes_pathname_prefix: str = None) -> dash.Dash:
+    #Basic auth definition
+    USERNAMEINFO = [['user','12345']]
+    auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
-#main layout
-app.layout = html.Div(className='wrapper',
-    children=[
-        dcc.Location(id='url', refresh=False),
-        main_nav.layout,
-        main_content.layout,
-        main_footer.layout
-    ]
-)
+    #main layout
+    app.layout = html.Div(className='wrapper',
+        children=[
+            dcc.Location(id='url', refresh=False),
+            main_nav.layout,
+            main_content.layout,
+            main_footer.layout
+        ]
+    )
 
-#Callbacks register
-register_callbacks(app)
+    #Callbacks register
+    register_callbacks(app)
+    return app
 
-
-# Main server 
-if __name__ == "__main__":
-    app.run_server(host="0.0.0.0", port="8050", debug=True)
 

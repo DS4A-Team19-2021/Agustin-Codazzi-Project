@@ -8,19 +8,19 @@ from flask_caching import Cache
 import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-from apps.utils.utils_getdata import get_data
-from apps.utils.utils_pivot_table import make_pivot_table
-from apps.utils.utils_plots import Make_map
-from apps.utils.utils_tree_map import Make_tree_map
-from apps.utils.utils_filters import make_filters, make_options_filters
+from Dash_IGAC.apps.utils.utils_getdata import get_data
+from Dash_IGAC.apps.utils.utils_pivot_table import make_pivot_table
+from Dash_IGAC.apps.utils.utils_plots import Make_map
+from Dash_IGAC.apps.utils.utils_tree_map import Make_tree_map
+from Dash_IGAC.apps.utils.utils_filters import make_filters, make_options_filters
 import dash_core_components as dcc
 from dash.exceptions import PreventUpdate
 #main dash instance
-from app import app
+from Dash_IGAC.app import app
 
 
 # #call modules needed for callbacks
-from apps.home import layout_home
+from Dash_IGAC.apps.home import layout_home
 
 #df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
 
