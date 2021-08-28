@@ -23,7 +23,7 @@ def make_filters(df):
                                             ]),justify="end",align="end"),
                             dbc.Row([
                                 dbc.Col([
-                                    html.H2(len(df),style={"padding": "5px","text-align":"right","font-size":"2.8em"},id="carta_datos")
+                                    html.H2(len(df),style={"text-align":"right","font-size":"2.8em"},id="carta_datos")
                                 ])
                                 ],justify="end",align="end"),
                                                   #id="carta_datos")],
