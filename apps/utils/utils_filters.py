@@ -9,58 +9,90 @@ def make_options_filters(data):
 
 def make_filters(df):
     card_of_filters = dbc.Card([
-        dbc.CardHeader("Filtros"),
+        dbc.CardHeader([
+            dbc.Row([
+                dbc.Col([
+                    html.Div(id="main_alert", children=[])
+                ])
+            ]),
+            dbc.Row([
+                dbc.Col([html.H2("Filtros")],width=9),
+                dbc.Col([
+                            dbc.Row(html.H4("Numero de Observaciones")),
+                            dbc.Row(len(df),style={"align": "center","offset":"0","font-size":"2.5em"},no_gutters=True),
+                                                  #id="carta_datos")],
+
+                    ],width=3),
+                    #html.H2("Filtros2")
+                ])
+        ]),
         dbc.CardBody([
                 html.H5("Filtre la información que desea ver", className="card-title"),
-                dbc.FormGroup([
-                    dbc.Label("Clima"),
-                    dcc.Dropdown(
-                        id="filtro_clima",
-                        options=make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()),
-                        value="",style={'color': 'black'}),
+            dbc.Row([
+                    dbc.Col([
+                        dbc.FormGroup([
+                            dbc.Label("Clima"),
+                            dcc.Dropdown(
+                                id="filtro_clima",
+                                options=make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()),
+                                value="",style={'color': 'black'}),
+                        ]),
+                    ],width=3),
+                    dbc.Col([
+                        dbc.FormGroup([
+                                dbc.Label("Paisaje"),
+                                dcc.Dropdown(
+                                    id="filtro_paisaje",
+                                    options=make_options_filters(df["PAISAJE"].dropna().unique()),
+                                    value="",style={'color': 'black'}),
+                        ]),
+                    ],width=3),
+                    dbc.Col([
+                        dbc.FormGroup([
+                            dbc.Label("Forma de Terreno"),
+                            dcc.Dropdown(
+                                id="filtro_forma_terreno",
+                                options=make_options_filters(df["FORMA_TERRENO"].dropna().unique()),
+                                value="",style={'color': 'black'}),
+                        ]),
+                    ],width=3),
+                    dbc.Col([
+                        dbc.FormGroup([
+                            dbc.Label("Material parental"),
+                            dcc.Dropdown(
+                                id="filtro_material_parental",
+                                options=make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),
+                                value="",style={'color': 'black'}),
+                        ]),
+                    ],width=3)
                 ]),
-                dbc.FormGroup([
-                        dbc.Label("Paisaje"),
-                        dcc.Dropdown(
-                            id="filtro_paisaje",
-                            options=make_options_filters(df["PAISAJE"].dropna().unique()),
-                            value="",style={'color': 'black'}),
-                ]),
-                dbc.FormGroup([
-                    dbc.Label("Forma de Terreno"),
-                    dcc.Dropdown(
-                        id="filtro_forma_terreno",
-                        options=make_options_filters(df["FORMA_TERRENO"].dropna().unique()),
-                        value="",style={'color': 'black'}),
-                ]),
-                dbc.FormGroup([
-                    dbc.Label("Material parental"),
-                    dcc.Dropdown(
-                        id="filtro_material_parental",
-                        options=make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),
-                        value="",style={'color': 'black'}),
-                ]),
-                html.Div(id="the_alert", children=[]),
-                dbc.FormGroup([
-                dcc.Upload(
-                    id='upload-data',
-                    children=html.Div([
-                        'Drag Here or ',
-                            html.A('Select Files')
-                             ]),
-                    style={
-                        'width': '100%',
-                        'height': '60px',
-                        'lineHeight': '60px',
-                        'borderWidth': '1px',
-                        'borderStyle': 'dashed',
-                        'borderRadius': '5px',
-                        'textAlign': 'center',
-                        'margin': '10px'
-                        },
-            # Allow multiple files to be uploaded
-                    multiple=False
-                    )]),
+                #dbc.Row([
+                #    html.Div(id="the_alert", children=[]),]
+                #),
+                dbc.Row([
+                    dbc.Col([
+                        dbc.FormGroup([
+                        dcc.Upload(
+                            id='upload-data',
+                            children=html.Div([
+                                'Drag Here or ',
+                                    html.A('Select Files')
+                                     ]),
+                            style={
+                                'width': '100%',
+                                'height': '60px',
+                                'lineHeight': '60px',
+                                'borderWidth': '1px',
+                                'borderStyle': 'dashed',
+                                'borderRadius': '5px',
+                                'textAlign': 'center',
+                                'margin': '10px'
+                                },
+                    # Allow multiple files to be uploaded
+                            multiple=False
+                            )]),
+                    ],width=12)
+                ])
         ]),
     ],color="secondary")
     return card_of_filters

@@ -27,12 +27,32 @@ layout= html.Div([
             #),
             dbc.Row([html.Hr()]), # primera fila se deja vacia
             dbc.Row([
-                dbc.Col([
-                    utils_filters.make_filters(df)
 
-                    ],lg=2,id="Filter_section"),
                 dbc.Col([
-                    html.Div(id="main_alert", children=[]),
+
+                    dbc.Container([
+                        utils_filters.make_filters(df)
+                    ],fluid=True)
+                ],width=12)
+            ]),
+           dbc.Row([
+               dbc.Col([
+                   dbc.Container([
+                       dbc.ListGroup([
+                           dbc.ListGroupItem([
+                               dbc.ListGroupItemHeading("Numero de Observaciones",
+                                                        style={"font-size": "1.3em"}),
+                               dbc.ListGroupItemText(len(df), style={"font-size": "2.5em","align": "right"},
+                                                     id="carta_datos")],
+                                                        id="carta_totales",color="#375A7F")
+                                                ])
+                    ])
+               ],width=12)
+           ]),
+                        #offset espacio que se deja desde la izquierda
+            dbc.Row([
+                dbc.Col([
+
                     html.H1("Resumen de clasificación Taxonómica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                     dbc.Row([
                         dbc.Col([dbc.Container([
@@ -47,52 +67,40 @@ layout= html.Div([
                                         'frameMargins': 0,
                                         'responsive': False,
                                         'showTips':True
-                                    })], size="lg", color="primary", type="border",
+                                    })], color="primary", type="border",
                                 fullscreen=True)
-                        ])
-                        ],lg='10'),
-
-                        dbc.Col([
-                            dbc.ListGroup([
-                                            dbc.ListGroupItem(
-                                                [
-                                                    dbc.ListGroupItemHeading("Numero de Observaciones",
-                                                                             style={"font-size": "1.3em"}),
-                                                    dbc.ListGroupItemText(len(df), style={"font-size": "2.5em",
-                                                                                        "align": "right"},
-                                                                          id="carta_datos")
-                                                ],
-                                                id="carta_totales",color="#375A7F")
-                                        ])
-                        ],width={"size": 2, "offset": 0})
-                        #offset espacio que se deja desde la izquierda
+                        ],fluid=True)
+                        ],width=12),
                     ],no_gutters=True),
                     dbc.Row([html.Hr()]),
-
-                    dbc.Row([
-                        dbc.Container([
-                                html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    ],lg=12),
+                ]),
+                dbc.Row([
+                    dbc.Container([
+                            html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
                         ],fluid=True),
+                    dbc.Row([
                         dbc.Col([
-                            dbc.Container([
                             dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
                                       id="tree_map",
                                       config={
                                              'displayModeBar': False,
                                              'fillFrame':False,
-                                             'frameMargins': 0,
-                                             'responsive': False
-                                         })]),], width={"size": 9, "offset": 0,})
+                                             'responsive': False,
+                                            'showTips':True
+                                         }),
+                            ], width=12),
                         ],no_gutters=True)
-                    ],lg=10),
                 ]),
+
             dbc.Row([html.Hr()]),
             dbc.Row([
-
+                dbc.Col([
                 dbc.Container([
                     html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                    utils_pivot_table.make_pivot_table(df)],id="Table_data")
-            ]),
-            dbc.Row([html.Hr()])
+
+                    utils_pivot_table.make_pivot_table(df)],id="Table_data",fluid=True)],width={'size': 12, 'offset': 0},align="center")
+            ],no_gutters=True),
+            dbc.Row([html.Hr()]),
 
                 ]) 
