@@ -16,14 +16,20 @@ def make_filters(df):
                 ])
             ]),
             dbc.Row([
-                dbc.Col([html.H2("Filtros")],width=9),
+                dbc.Col([html.H2("Filtros")],width=10),
                 dbc.Col([
-                            dbc.Row(html.H4("Numero de Observaciones")),
-                            dbc.Row(len(df),style={"align": "center","offset":"0","font-size":"2.5em"},no_gutters=True),
+                            dbc.Row(
+                                dbc.Col([html.H4("Numero de Observaciones",style={"padding": "5px","text-align":"center"})
+                                            ]),justify="end",align="end"),
+                            dbc.Row([
+                                dbc.Col([
+                                    html.H2(len(df),style={"padding": "5px","text-align":"right","font-size":"2.8em"},id="carta_datos")
+                                ])
+                                ],justify="end",align="end"),
                                                   #id="carta_datos")],
 
-                    ],width=3),
-                    #html.H2("Filtros2")
+                    ],width=2,align="end"),
+                    #html.H2("Filtros2","font-size":"2.5em")
                 ])
         ]),
         dbc.CardBody([

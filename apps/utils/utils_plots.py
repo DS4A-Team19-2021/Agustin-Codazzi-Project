@@ -19,7 +19,7 @@ def Make_map(df):
         paper_bgcolor="#222222",
         font_color="#FFFFFF",
         margin=dict(l=0, r=2, t=0, b=0),
-        height=1000,
+        height=700,
 
     )
     fig.update_traces(

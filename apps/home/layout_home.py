@@ -35,19 +35,9 @@ layout= html.Div([
                     ],fluid=True)
                 ],width=12)
             ]),
+            dbc.Row([html.Hr()]),
            dbc.Row([
-               dbc.Col([
-                   dbc.Container([
-                       dbc.ListGroup([
-                           dbc.ListGroupItem([
-                               dbc.ListGroupItemHeading("Numero de Observaciones",
-                                                        style={"font-size": "1.3em"}),
-                               dbc.ListGroupItemText(len(df), style={"font-size": "2.5em","align": "right"},
-                                                     id="carta_datos")],
-                                                        id="carta_totales",color="#375A7F")
-                                                ])
-                    ])
-               ],width=12)
+               html.Hr(style={"border-color":"#375A7F","background-color":"#375A7F"})
            ]),
                         #offset espacio que se deja desde la izquierda
             dbc.Row([
@@ -81,14 +71,16 @@ layout= html.Div([
                         ],fluid=True),
                     dbc.Row([
                         dbc.Col([
-                            dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
-                                      id="tree_map",
-                                      config={
-                                             'displayModeBar': False,
-                                             'fillFrame':False,
-                                             'responsive': False,
-                                            'showTips':True
-                                         }),
+                            dbc.Container([
+                                dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
+                                          id="tree_map",
+                                          config={
+                                                 'displayModeBar': False,
+                                                 'fillFrame':False,
+                                                 'responsive': False,
+                                                'showTips':True
+                                             }),
+                            ],fluid=True)
                             ], width=12),
                         ],no_gutters=True)
                 ]),
