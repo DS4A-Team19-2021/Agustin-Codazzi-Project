@@ -13,6 +13,8 @@ def make_filters(df):
             dbc.Row([
                 dbc.Col([
                     html.Div(id="main_alert", children=[])
+                ]),dbc.Col([
+                    html.Div(id="data_alert", children=[])
                 ])
             ]),
             dbc.Row([
