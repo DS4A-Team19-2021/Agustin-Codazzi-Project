@@ -2,7 +2,7 @@ import pandas as pd
 import unidecode
 
 def get_data(column_name):
-       df=pd.read_csv("Data3.csv",
+       df=pd.read_csv("otro_test.csv",
                    usecols =column_name , low_memory = True)
        return df
 

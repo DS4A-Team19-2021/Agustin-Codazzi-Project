@@ -17,8 +17,8 @@ df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
 
 
 layout= html.Div([
+            dbc.Row([html.Hr()]),
             dbc.Spinner(children=[
-                dbc.Row([html.Hr()]), # primera fila se deja vacia
                 dbc.Row([
 
                     dbc.Col([
@@ -26,7 +26,36 @@ layout= html.Div([
                         dbc.Container([
                             utils_filters.make_filters(df)
                         ],fluid=True)
-                    ],width=12)
+                    ],width=9),
+                    dbc.Col([
+                        dbc.Container([
+                            utils_filters.Card_for_obs(df)
+                        ],fluid=True)
+                    ],width=3)
+                ]),
+                dbc.Row([
+                    dbc.Col([
+                        dbc.FormGroup([
+                        dcc.Upload(
+                            id='upload-data',
+                            children=html.Div([
+                                'Drag Here or ',
+                                    html.A('Select Files')
+                                     ]),
+                            style={
+                                'width': '100%',
+                                'height': '60px',
+                                'lineHeight': '60px',
+                                'borderWidth': '1px',
+                                'borderStyle': 'dashed',
+                                'borderRadius': '5px',
+                                'textAlign': 'center',
+                                'margin': '10px',
+                                },
+                    # Allow multiple files to be uploaded
+                            multiple=False
+                            )]),
+                    ],width=2),
                 ]),
                 #dbc.Row([html.Hr()]),
 

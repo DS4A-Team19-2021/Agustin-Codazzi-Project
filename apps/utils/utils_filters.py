@@ -6,10 +6,18 @@ from apps.utils.utils_getdata import standarised_string
 
 def make_options_filters(data):
     return [{"label":x,"value":x} for x in data]
-
+montana="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/mountain.png"
 def make_filters(df):
     card_of_filters = dbc.Card([
-        dbc.CardHeader([
+        #dbc.CardHeader([
+
+        #    dbc.Row([
+        #        dbc.Col([html.H3("Filtros")],width=12),
+                    #html.H2("Filtros2","font-size":"2.5em")
+        #        ])
+        #]),
+        dbc.CardBody([
+                #html.H5("Filtre la información que desea ver", className="card-title"),
             dbc.Row([
                 dbc.Col([
                     html.Div(id="main_alert", children=[])
@@ -21,33 +29,15 @@ def make_filters(df):
                 ]),
             ]),
             dbc.Row([
-                dbc.Col([html.H2("Filtros")],width=10),
-                dbc.Col([
-                            dbc.Row(
-                                dbc.Col([html.H4("Numero de Observaciones",style={"padding": "5px","text-align":"center"})
-                                            ]),justify="end",align="end"),
-                            dbc.Row([
-                                dbc.Col([
-                                    html.H2(len(df),style={"text-align":"right","font-size":"2.8em"},id="carta_datos")
-                                ])
-                                ],justify="end",align="end"),
-                                                  #id="carta_datos")],
 
-                    ],width=2,align="end"),
-                    #html.H2("Filtros2","font-size":"2.5em")
-                ])
-        ]),
-        dbc.CardBody([
-                html.H5("Filtre la información que desea ver", className="card-title"),
-            dbc.Row([
                     dbc.Col([
+                        dbc.Row(html.Img(src=montana, height="80px"),style={"text-align":"center"},justify="center",align="center"),
                         dbc.FormGroup([
-                            dbc.Row(html.Img(src="mountaing.png", height="20px")),
-                            dbc.Row([dbc.Label("Clima"),
+                            dbc.Label("Clima"),
                             dcc.Dropdown(
                                 id="filtro_clima",
                                 options=make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()),
-                                value="",style={'color': 'black'})]),
+                                value="",style={'color': 'black'}),
                         ]),
                     ],width=3),
                     dbc.Col([
@@ -76,38 +66,51 @@ def make_filters(df):
                                 options=make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),
                                 value="",style={'color': 'black'}),
                         ]),
-                    ],width=3)
+                    ],width=3),
                 ]),
                 #dbc.Row([
                 #    html.Div(id="the_alert", children=[]),]
                 #),
-                dbc.Row([
-                    dbc.Col([
-                        dbc.FormGroup([
-                        dcc.Upload(
-                            id='upload-data',
-                            children=html.Div([
-                                'Drag Here or ',
-                                    html.A('Select Files')
-                                     ]),
-                            style={
-                                'width': '100%',
-                                'height': '60px',
-                                'lineHeight': '60px',
-                                'borderWidth': '1px',
-                                'borderStyle': 'dashed',
-                                'borderRadius': '5px',
-                                'textAlign': 'center',
-                                'margin': '10px'
-                                },
-                    # Allow multiple files to be uploaded
-                            multiple=False
-                            )]),
-                    ],width=12)
-                ])
+                #dbc.Row([
+                #    dbc.Col([
+                #        dbc.FormGroup([
+                #        dcc.Upload(
+                #            id='upload-data',
+                #            children=html.Div([
+                #                'Drag Here or ',
+                #                    html.A('Select Files')
+                #                     ]),
+                #            style={
+                #                'width': '100%',
+                #                'height': '60px',
+                #                'lineHeight': '60px',
+                #                'borderWidth': '1px',
+                #                'borderStyle': 'dashed',
+                #                'borderRadius': '5px',
+                #                'textAlign': 'center',
+                #                'margin': '10px',
+                #                },
+                #    # Allow multiple files to be uploaded
+                #            multiple=False
+                #            )]),
+                #    ],width=2)
+                #])
         ]),
     ],color="secondary",style={'borderRadius': '15px'})
     return card_of_filters
+def Card_for_obs(df):
+    card=dbc.Card([
+            dbc.CardHeader([
+                html.H3("Observaciones", style={"padding": "5px", "text-align": "right"}),
+
+                    # id="carta_datos")],
+
+            ]),
+            dbc.CardBody([dbc.Col([
+                            html.H2(len(df), style={"text-align": "right", "font-size": "2.8em"}, id="carta_datos")
+                        ],align="end")])
+    ],color="secondary",style={'borderRadius': '15px'})
+    return card
 
 #"/Users/jamontanac/Desktop/Screen Shot 2021-07-23 at 10.11.21 AM.png"
 
