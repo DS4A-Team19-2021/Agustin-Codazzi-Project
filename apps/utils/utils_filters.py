@@ -105,7 +105,7 @@ def make_filters(df):
                     ],width=12)
                 ])
         ]),
-    ],color="secondary")
+    ],color="secondary",style={'borderRadius': '15px'})
     return card_of_filters
 
 #"/Users/jamontanac/Desktop/Screen Shot 2021-07-23 at 10.11.21 AM.png"

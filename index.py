@@ -9,7 +9,6 @@ from callbacks import register_callbacks
 
 #dash instance
 from app import app
-from app import server
 
 #Dash custom modules
 from apps.main import main_nav, main_content, main_footer

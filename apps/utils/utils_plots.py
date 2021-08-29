@@ -1,10 +1,11 @@
 import plotly.express as px
 
 def Make_map(df):
-    new_df=df[["LATITUD","LONGITUD","ORDEN","ALTITUD"]].dropna()
+    new_df=df[["LATITUD","LONGITUD","ALTITUD","CLIMA_AMBIENTAL", "PAISAJE", "CODIGO", 'TIPO_RELIEVE', 'FORMA_TERRENO',
+                        'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN']].dropna()
 
     fig=px.scatter_mapbox(new_df, lat="LATITUD", lon="LONGITUD", color= "ORDEN", size_max=15, zoom=7
-                      ,labels={"ORDEN": "ORDEN", "ALTITUD": "medal"},custom_data=["ORDEN","ALTITUD"],
+                      ,labels={"ORDEN": "ORDEN"},custom_data=["ORDEN","ALTITUD","PAISAJE","CLIMA_AMBIENTAL","TIPO_RELIEVE"],
                           color_discrete_map={
                               "Andisol": '#e74C3C',
                               "Entisol": '#3498DB',
@@ -23,7 +24,7 @@ def Make_map(df):
 
     )
     fig.update_traces(
-        hovertemplate='Orden: %{customdata[0]}' + '<br> Altitud: %{customdata[1]} '
+        hovertemplate='Orden: %{customdata[0]}' + '<br> Altitud: %{customdata[1]} ' + '<br> Paisaje: %{customdata[2]} ' + '<br> Clima: %{customdata[3]} ' + '<br> Relieve: %{customdata[4]} '
     )
 
 

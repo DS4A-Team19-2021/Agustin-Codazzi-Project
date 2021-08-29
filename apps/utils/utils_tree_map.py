@@ -1,12 +1,12 @@
 import plotly.express as px
 
 def Make_tree_map(df):
-    columns_in_map = ["CLIMA_AMBIENTAL", "PAISAJE", "CODIGO", 'TIPO_RELIEVE', 'FORMA_TERRENO',
+    columns_in_map = ["LATITUD","LONGITUD","ALTITUD","CLIMA_AMBIENTAL", "PAISAJE", "CODIGO", 'TIPO_RELIEVE', 'FORMA_TERRENO',
                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN', ]
     new_df=df[columns_in_map].copy()
     new_df['conteo_orden'] = 1
 
-    fig = px.treemap(new_df.dropna(), path=[px.Constant("Total"),'ORDEN','PAISAJE','CLIMA_AMBIENTAL','FORMA_TERRENO'], values='conteo_orden',
+    fig = px.treemap(new_df.dropna(), path=[px.Constant("Total"),'ORDEN','PAISAJE','CLIMA_AMBIENTAL','FORMA_TERRENO','MATERIAL_PARENTAL_LITOLOGIA'], values='conteo_orden',
                  color="ORDEN",hover_data=[],maxdepth=3, color_discrete_map={
                 '(?)': '#A0BBD1',
                 "Andisol": '#e74C3C',

@@ -118,17 +118,16 @@ def register_callbacks(app):
 
 
     @app.callback(Output('Mapa', 'figure'), Output('tree_map', 'figure'),
-                  Output("carta_datos","children"),Output("filtro_clima","options"),
-                  Output("filtro_paisaje","options"),Output("filtro_forma_terreno", "options"),
-                  Output("filtro_material_parental","options"),Output('Table_data', 'children'),
-                  Output("main_alert", "children"),
+                  Output("carta_datos","children"), Output("filtro_clima","options"),
+                  Output("filtro_paisaje","options"), Output("filtro_forma_terreno", "options"),
+                  Output("filtro_material_parental","options"), Output('Table_data', 'children'),
+                  Output("main_alert", "children"), Output("data_alert","children"),
                   Input("filtro_clima", "value"), Input("filtro_paisaje", "value"),
                   Input("filtro_forma_terreno", "value"), Input("filtro_material_parental", "value"),
                   Input('upload-data', 'contents'),
                   State('upload-data', 'filename'),State('upload-data', 'last_modified'))
     def update_maps(filtro_clima,filtro_paisaje,filtro_forma_terreno,filtro_material_parental,list_of_contents, list_of_names, list_of_dates):
         dropdown = [filtro_clima, filtro_paisaje, filtro_forma_terreno, filtro_material_parental]
-        #print(dropdown)
         if list_of_contents is not None:
             df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
             if len(df) == 0:
@@ -145,20 +144,26 @@ def register_callbacks(app):
                                    color="danger",dismissable=True,
                                    duration=7000)
                 error_section=html.Div([
-                                html.H2('There was an error processing this file. File {}, uploaded {}'.format(filename,datetime.datetime.fromtimestamp(date))),
+                                html.H2('Un error ocurrió al procesar el archivo {}, subido en la fecha {}'.format(filename,datetime.datetime.fromtimestamp(date))),
                                 html.Br(),
-                                html.H2('Double check that you have the right format or your file has the needed Columns')]
+                                html.H2('Verifique que su archivo tiene el formato adeacuado y que contiene las columnas necesarias para renderizar la tabla')]
                                 ,className="text-danger",style={"align-text":"center"})
+                dash.callback_context.inputs['upload-data.contents']=None
+                print(dash.callback_context.inputs['upload-data.contents'])
                 return dash.no_update, dash.no_update, dash.no_update,\
                        dash.no_update, dash.no_update,\
                        dash.no_update, dash.no_update,\
-                       error_section, alert2
+                       error_section, alert2,dash.no_update
             else:
                 conditions = get_conditions_dropdown(df, dropdown)
+                data_alert = dbc.Alert(html.H2(
+                    "La combinación de filtros solicitada no contiene datos, porfavor eliga una nueva combinación o deseleccione un filtro"),
+                                       color="warning", dismissable=True, duration=5000)
                 if conditions.sum() == 0:
+
                     return dash.no_update, dash.no_update, dash.no_update, dash.no_update,\
                            dash.no_update, dash.no_update, dash.no_update, dash.no_update,\
-                           dash.no_update,
+                           dash.no_update,data_alert
                 else:
                     use = df[conditions]
                     table_children = html.Div([
@@ -170,18 +175,41 @@ def register_callbacks(app):
                                 className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
                         make_pivot_table(use)
                     ])
-                    good_alarm = dbc.Alert([html.H4("The file {} was successfully processed".format(filename)), ],
-                                           color="success", dismissable=True,
-                                           duration=5000)
+                    #good_alarm = dbc.Alert([html.H4("El archivo {} fue procesado exitosamente".format(filename)), ],
+                    #                       color="success", dismissable=True,
+                    #                       duration=5000)
 
                     return Make_map(use),Make_tree_map(use), len(use), \
                            make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()), \
                            make_options_filters(df["PAISAJE"].dropna().unique()), \
                            make_options_filters(df["FORMA_TERRENO"].dropna().unique()), \
                            make_options_filters(df["MATERIAL_PARENTAL_LITOLOGIA"].dropna().unique()),\
-                           table_children, good_alarm
+                           table_children, dash.no_update,dash.no_update
         else:
-            raise PreventUpdate
+            df = get_data(["CLIMA_AMBIENTAL", "PAISAJE",
+                           'TIPO_RELIEVE', 'FORMA_TERRENO',
+                           'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                           "LATITUD", "LONGITUD", "ALTITUD", "CODIGO"]).dropna().reset_index(drop=True)
+            conditions = get_conditions_dropdown(df, dropdown)
+            data_alert = dbc.Alert(html.H2(
+                "La combinación de filtros solicitada no contiene datos, porfavor eliga una nueva combinación o deseleccione un filtro"),
+                color="warning", dismissable=True, duration=5000)
+            if conditions.sum() == 0:
+                return dash.no_update, dash.no_update, dash.no_update, dash.no_update,\
+                       dash.no_update, dash.no_update, dash.no_update, dash.no_update,\
+                       dash.no_update,data_alert
+            else:
+                use = df[conditions]
+                return Make_map(use), Make_tree_map(use), len(use), \
+                       dash.no_update, dash.no_update, \
+                       dash.no_update, dash.no_update, \
+                       dash.no_update, dash.no_update, dash.no_update
+
+
+
+
+            #raise PreventUpdate
+
 
 
 
