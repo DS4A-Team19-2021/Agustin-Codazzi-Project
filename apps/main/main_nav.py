@@ -11,6 +11,9 @@ menu_bar = [
     dbc.NavItem(
         dbc.NavLink("Home", active = True, id = "page-1-link",href="/apps/home/layout_home")
     ),
+    dbc.NavItem(
+        dbc.NavLink("Pivot Table", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-2-link")
+    ),
     dbc.Row([
 
         dbc.Col([
@@ -60,4 +63,5 @@ layout = html.Div(
     ],
     id="menu",
 )
+
 

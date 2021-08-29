@@ -19,6 +19,9 @@ def Make_map(df):
         mapbox_style="satellite-streets",
         paper_bgcolor="#222222",
         font_color="#FFFFFF",
+        font=dict(
+            size=18,
+            color="#FFFFFF"),
         margin=dict(l=0, r=2, t=0, b=0),
         height=700,
 

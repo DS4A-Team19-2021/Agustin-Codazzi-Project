@@ -28,7 +28,7 @@ layout= html.Div([
                         ],fluid=True)
                     ],width=12)
                 ]),
-                dbc.Row([html.Hr()]),
+                #dbc.Row([html.Hr()]),
 
                             #offset espacio que se deja desde la izquierda
                 dbc.Row([
@@ -79,15 +79,15 @@ layout= html.Div([
                     ],lg=11)
                         ]),
 
-                dbc.Row([html.Hr()]),
-                dbc.Row([
-                    dbc.Col([
-                    dbc.Container([
-                        html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                #dbc.Row([html.Hr()]),
+                #dbc.Row([
+                #    dbc.Col([
+                #    dbc.Container([
+                #        html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
 
-                        utils_pivot_table.make_pivot_table(df)],id="Table_data",fluid=True)],width={'size': 12, 'offset': 0},align="center")
-                ],no_gutters=True),
+                #        utils_pivot_table.make_pivot_table(df)],id="Table_data",fluid=True)],width={'size': 12, 'offset': 0},align="center")
+                #],no_gutters=True),
                 dbc.Row([html.Hr()]),
-                ], color="primary", type="border",fullscreen=True),
+                ], color="primary", type="border",fullscreen=True,fullscreen_style={"background-color": "#444444"}),
 
                 ]) 

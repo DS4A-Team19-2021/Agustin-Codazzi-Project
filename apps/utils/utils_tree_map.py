@@ -18,6 +18,8 @@ def Make_tree_map(df):
 
     fig.update_traces(name='categories',
                       root_color='#9CC1EF',
+                      hovertemplate='<b>%{label} </b> <br> Total: %{value} <br> Dependencia: %{parent}',
+                      #hovertemplate='Orden: %{customdata[0]}' + '<br> Paisaje: %{customdata[2]} ' + '<br> Clima: %{customdata[3]} ' + '<br> Relieve: %{customdata[4]} ',
                       #texttemplate="%{label}<br>%{value}<br>",
                       selector=dict(type='treemap'))
     fig.update_layout(

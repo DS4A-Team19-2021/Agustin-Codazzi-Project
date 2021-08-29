@@ -42,11 +42,12 @@ def make_filters(df):
             dbc.Row([
                     dbc.Col([
                         dbc.FormGroup([
-                            dbc.Label("Clima"),
+                            dbc.Row(html.Img(src="mountaing.png", height="20px")),
+                            dbc.Row([dbc.Label("Clima"),
                             dcc.Dropdown(
                                 id="filtro_clima",
                                 options=make_options_filters(df["CLIMA_AMBIENTAL"].dropna().unique()),
-                                value="",style={'color': 'black'}),
+                                value="",style={'color': 'black'})]),
                         ]),
                     ],width=3),
                     dbc.Col([
