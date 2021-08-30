@@ -48,6 +48,25 @@ carta_tree_map=dbc.Card([
                                 ],  lg=12,align="center"),
                             ]),
                     ],style={'borderRadius': '0px',},color="#ffffff00",)
+upload_component=dcc.Upload(
+                                id='upload-data',
+                                children=html.Div([
+                                    'Inserte ',
+                                    html.A('el archivo')
+                                ]),
+                                style={
+                                    'width': '96%',
+                                    'height': '50px',
+                                    'lineHeight': '50px',
+                                    'borderWidth': '1px',
+                                    'borderStyle': 'dashed',
+                                    'borderRadius': '5px',
+                                    'textAlign': 'center',
+                                    'margin': '10px',
+                                },
+                                # Allow multiple files to be uploaded
+)
+
 layout= html.Div([
             dbc.Row([html.Hr()]),
             dbc.Row([
@@ -79,25 +98,8 @@ layout= html.Div([
                         ],fluid=True)]),
                         dbc.Row([
                         dbc.Container([
-                            dcc.Upload(
-                                id='upload-data',
-                                children=html.Div([
-                                    'Inserte ',
-                                    html.A('el archivo')
-                                ]),
-                                style={
-                                    'width': '96%',
-                                    'height': '50px',
-                                    'lineHeight': '50px',
-                                    'borderWidth': '1px',
-                                    'borderStyle': 'dashed',
-                                    'borderRadius': '5px',
-                                    'textAlign': 'center',
-                                    'margin': '10px',
-                                },
-                                # Allow multiple files to be uploaded
-                                multiple=False
-                            )
+                            upload_component,
+
                         ],fluid=False,style={"left-padding": "10px"})]),
 
                     ],width=3)

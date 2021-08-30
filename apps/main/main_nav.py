@@ -9,10 +9,16 @@ github_logo="https://github.com/jamontanac/Tesis_Master/raw/master/GitHub_logo.p
 correlation_one_logo="https://www.correlation-one.com/hubfs/c1logo_color.png"
 menu_bar = [
     dbc.NavItem(
-        dbc.NavLink("Home", active = True, id = "page-1-link",href="/apps/home/layout_home")
+        dbc.NavLink("Inicio", active = True, id = "page-1-link",href="/apps/home/layout_home")
     ),
     dbc.NavItem(
-        dbc.NavLink("Pivot Table", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-2-link")
+        dbc.NavLink("Visualización", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-2-link")
+    ),
+    dbc.NavItem(
+        dbc.NavLink("Tabla", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-3-link")
+    ),
+    dbc.NavItem(
+        dbc.NavLink("About", active = False, href = "#", id = "page-4-link",disabled=True)
     ),
     dbc.Row([
 
@@ -54,7 +60,7 @@ navbar = dbc.Navbar(
         ),
     ],
     color="primary",
-    dark=False,
+    dark=False,sticky="top",
 )
 
 layout = html.Div(
