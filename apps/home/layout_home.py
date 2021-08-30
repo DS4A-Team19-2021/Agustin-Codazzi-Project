@@ -15,12 +15,54 @@ df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
                          "LATITUD","LONGITUD","ALTITUD","CODIGO"]).dropna()
 
 
-
+carta_mapa=dbc.Card([
+                                dbc.CardBody([
+                                    dbc.Col([
+                                        dcc.Graph(figure=utils_plots.Make_map(df),
+                                                id="Mapa",
+                                                config={
+                                                    'mapboxAccessToken': open(".mapbox_token").read(),
+                                                    'displayModeBar': False,
+                                                    'staticPlot': False,
+                                                    'fillFrame': False,
+                                                    'frameMargins': 0,
+                                                    'responsive': False,
+                                                    'showTips': True
+                                                },style={'height': '500px'})
+                                    ], lg=12,align="center")
+                                ]),
+                            ],style={'borderRadius': '0px'},color="#ffffff00")
+carta_tree_map=dbc.Card([
+                    dbc.CardBody([
+                            dbc.Col([
+                                    dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
+                                              id="tree_map",
+                                              config={
+                                                     'displayModeBar': False,
+                                                     'fillFrame':False,
+                                                     'frameMargins': 0,
+                                                     'staticPlot': False,
+                                                     'responsive': False,
+                                                    'showTips':True
+                                                 },style={'height': '500px'}),
+                                ],  lg=12,align="center"),
+                            ]),
+                    ],style={'borderRadius': '0px',},color="#ffffff00",)
 layout= html.Div([
             dbc.Row([html.Hr()]),
             dbc.Row([
                 dbc.Col([
                     dbc.Container([
+                        dbc.Row([
+                            dbc.Col([
+                                html.Div(id="main_alert", children=[])
+                            ]),
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                html.Div(id="data_alert", children=[])
+                            ]),
+                        ]),
             dbc.Spinner(children=[
                 dbc.Row([
 
@@ -68,67 +110,39 @@ layout= html.Div([
                         dbc.Container([
                             dbc.Tabs(
                             [
-                                dbc.Tab(label="Georeferenciación", tab_id="tab_map",active_tab_style={"border-color":"#f39c12"}),
-                                dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree"),
+                                dbc.Tab(label="Georeferenciación", tab_id="tab_map",children=[carta_mapa]),
+                                dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree",children=[carta_tree_map]),
                             ],
                             id="tabs",
                             active_tab="tab_map",
                         ),],fluid=True),
-                        dbc.Container([
-                            dbc.Card([
-                                #dbc.CardHeader([
-                                #    dbc.Tabs(
-                                #        [
-                                #            dbc.Tab(label="Georeferenciación", tab_id="tab_map"),
-                                #            dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree"),
-                                #        ],
-                                #        id="tabs",
-                                #        active_tab="tab_map",card=True
-                                #    ),
-                                #]),
-                                dbc.CardBody([
-                                    dbc.Col([
-                                        dcc.Graph(figure=utils_plots.Make_map(df),
-                                                id="Mapa",
-                                                config={
-                                                    'mapboxAccessToken': open(".mapbox_token").read(),
-                                                    'displayModeBar': False,
-                                                    'staticPlot': False,
-                                                    'fillFrame': False,
-                                                    'frameMargins': 0,
-                                                    'responsive': False,
-                                                    'showTips': True
-                                                })
-                                    ], lg=12,align="center")
-                                ]),
-                            ],color="secondary",inverse=False,style={'borderRadius': '0px',"border-color":"#f39c12"})
-                        ],fluid=True)
+
                     ],width=12),
 
                 ],justify="center"),
-                    dbc.Row([
-                        dbc.Col([
+                    #dbc.Row([
+                    #    dbc.Col([
 
-                            html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    #        html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
             
-                        dbc.Row([
-                            dbc.Col([
-                                dbc.Container([
-                                    dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
-                                              id="tree_map",
-                                              config={
-                                                     'displayModeBar': False,
-                                                     'fillFrame':False,
-                                                     'frameMargins': 0,
-                                                     'staticPlot': False,
-                                                     'responsive': False,
-                                                    'showTips':True
-                                                 },style={'height': '700px'}),
-                                ],fluid=True,)
-                                ], width=12),
-                            ],no_gutters=True)
-                    ],lg=11)
-                        ]),
+                    #   dbc.Row([
+                    #        dbc.Col([
+                    #            dbc.Container([
+                    #                dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
+                    #                          id="tree_map",
+                    #                          config={
+                    #                                 'displayModeBar': False,
+                    #                                 'fillFrame':False,
+                    #                                 'frameMargins': 0,
+                    #                                 'staticPlot': False,
+                    #                                 'responsive': False,
+                    #                                'showTips':True
+                    #                             },style={'height': '700px'}),
+                    #            ],fluid=True,)
+                    #            ], width=12),
+                    #        ],no_gutters=True)
+                    #],lg=11)
+                    #    ]),
 
                 #dbc.Row([html.Hr()]),
                 #dbc.Row([
@@ -144,3 +158,34 @@ layout= html.Div([
                 ],width=12,align="end")
                 ])
                 ]) 
+
+
+#dbc.Container([
+                        #    dbc.Card([
+                                #dbc.CardHeader([
+                                #    dbc.Tabs(
+                                #        [
+                                #            dbc.Tab(label="Georeferenciación", tab_id="tab_map"),
+                                #            dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree"),
+                                #        ],
+                                #        id="tabs",
+                                #        active_tab="tab_map",card=True
+                                #    ),
+                                #]),
+                        #        dbc.CardBody([
+                        #            dbc.Col([
+                        #                dcc.Graph(figure=utils_plots.Make_map(df),
+                        #                        id="Mapa",
+                        #                        config={
+                        #                            'mapboxAccessToken': open(".mapbox_token").read(),
+                        #                            'displayModeBar': False,
+                        #                            'staticPlot': False,
+                        #                            'fillFrame': False,
+                        #                            'frameMargins': 0,
+                        #                            'responsive': False,
+                        #                            'showTips': True
+                        #                        })
+                        #            ], lg=12,align="center")
+                        #        ]),
+                        #    ],color="secondary",inverse=False,style={'borderRadius': '0px',"border-color":"#f39c12"})
+                        #],fluid=True)

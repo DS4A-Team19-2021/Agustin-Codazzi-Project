@@ -28,7 +28,7 @@ def Make_tree_map(df):
         font_color="#FFFFFF",
         title_font_color="#FFFFFF",
         #font=dict(size=18),
-        margin = dict(t=50, l=25, r=25, b=25),
+        margin = dict(t=15, l=0, r=0, b=0),
         #autosize=True,
 
         #height=700,

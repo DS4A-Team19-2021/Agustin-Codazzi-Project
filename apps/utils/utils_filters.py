@@ -23,16 +23,7 @@ def make_filters(df):
         #]),
         dbc.CardBody([
                 #html.H5("Filtre la información que desea ver", className="card-title"),
-            dbc.Row([
-                dbc.Col([
-                    html.Div(id="main_alert", children=[])
-                ]),
-            ]),
-            dbc.Row([
-                dbc.Col([
-                    html.Div(id="data_alert", children=[])
-                ]),
-            ]),
+
             dbc.Row([
 
                     dbc.Col([
