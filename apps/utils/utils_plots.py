@@ -23,7 +23,7 @@ def Make_map(df):
             size=18,
             color="#FFFFFF"),
         margin=dict(l=0, r=2, t=0, b=0),
-        height=700,
+        height=500,
 
     )
     fig.update_traces(
