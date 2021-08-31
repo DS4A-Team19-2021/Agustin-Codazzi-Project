@@ -18,7 +18,7 @@ def Make_tree_map(df):
 
     fig.update_traces(name='categories',
                       root_color='#9CC1EF',
-                      hovertemplate='<b>%{label} </b> <br> Total: %{value} <br> Dependencia: %{parent}',
+                      hovertemplate='<b>%{label} </b> <br> Total: %{value} <br> Nodo Madre: %{parent}',
                       #hovertemplate='Orden: %{customdata[0]}' + '<br> Paisaje: %{customdata[2]} ' + '<br> Clima: %{customdata[3]} ' + '<br> Relieve: %{customdata[4]} ',
                       #texttemplate="%{label}<br>%{value}<br>",
                       selector=dict(type='treemap'))
@@ -27,8 +27,12 @@ def Make_tree_map(df):
         paper_bgcolor="#222222",
         font_color="#FFFFFF",
         title_font_color="#FFFFFF",
+        font=dict(
+            size=20,
+            family="Lato",
+            color="#FFFFFF"),
         #font=dict(size=18),
-        margin = dict(t=15, l=0, r=0, b=0),
+        margin = dict(t=25, l=0, r=0, b=0),
         #autosize=True,
 
         #height=700,

@@ -12,7 +12,7 @@ menu_bar = [
         dbc.NavLink("Inicio", active = True, id = "page-1-link",href="/apps/home/layout_home")
     ),
     dbc.NavItem(
-        dbc.NavLink("Visualización", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-2-link")
+        dbc.NavLink("Visualización", active = "exact", href = "/apps/home/layout_home", id = "page-2-link")
     ),
     dbc.NavItem(
         dbc.NavLink("Tabla", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-3-link")
@@ -20,6 +20,7 @@ menu_bar = [
     dbc.NavItem(
         dbc.NavLink("About", active = False, href = "#", id = "page-4-link",disabled=True)
     ),
+    ##375A7F;
     dbc.Row([
 
         dbc.Col([
@@ -60,7 +61,7 @@ navbar = dbc.Navbar(
         ),
     ],
     color="primary",
-    dark=False,sticky="top",
+    dark=True,sticky="top",
 )
 
 layout = html.Div(

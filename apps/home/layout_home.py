@@ -32,6 +32,7 @@ carta_mapa=dbc.Card([
                                     ], lg=12,align="center")
                                 ]),
                             ],style={'borderRadius': '0px'},color="#ffffff00")
+
 carta_tree_map=dbc.Card([
                     dbc.CardBody([
                             dbc.Col([
@@ -48,6 +49,7 @@ carta_tree_map=dbc.Card([
                                 ],  lg=12,align="center"),
                             ]),
                     ],style={'borderRadius': '0px',},color="#ffffff00",)
+
 upload_component=dcc.Upload(
                                 id='upload-data',
                                 children=html.Div([
@@ -82,7 +84,7 @@ layout= html.Div([
                                 html.Div(id="data_alert", children=[])
                             ]),
                         ]),
-            dbc.Spinner(children=[
+
                 dbc.Row([
 
                     dbc.Col([
@@ -91,6 +93,7 @@ layout= html.Div([
                             utils_filters.make_filters(df)
                         ],fluid=True)
                     ],width=9),
+
                     dbc.Col([
                         dbc.Row([
                         dbc.Container([
@@ -106,56 +109,34 @@ layout= html.Div([
                 ]),
                 #dbc.Row([html.Hr()]),
 
-                            #offset espacio que se deja desde la izquierda
+                           #offset espacio que se deja desde la izquierda
                 dbc.Row([
                     dbc.Col([
                         dbc.Container([
+                        dbc.Spinner(children=[
+                        #dcc.Loading(children=[
                             dbc.Tabs(
                             [
                                 dbc.Tab(label="Georeferenciación", tab_id="tab_map",children=[carta_mapa]),
+
+
                                 dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree",children=[carta_tree_map]),
+
                             ],
                             id="tabs",
                             active_tab="tab_map",
-                        ),],fluid=True),
+                        ),
+                        #],type="circle",color="primary",style={"background-color": "#444444"})
+                        ], color="primary", type="border",fullscreen=False,fullscreen_style={"background-color": "#444444"}),
+
+                        ],fluid=True),
 
                     ],width=12),
 
                 ],justify="center"),
-                    #dbc.Row([
-                    #    dbc.Col([
 
-                    #        html.H2("Desglose Taxonómico", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
-            
-                    #   dbc.Row([
-                    #        dbc.Col([
-                    #            dbc.Container([
-                    #                dcc.Graph(figure=utils_tree_map.Make_tree_map(df),
-                    #                          id="tree_map",
-                    #                          config={
-                    #                                 'displayModeBar': False,
-                    #                                 'fillFrame':False,
-                    #                                 'frameMargins': 0,
-                    #                                 'staticPlot': False,
-                    #                                 'responsive': False,
-                    #                                'showTips':True
-                    #                             },style={'height': '700px'}),
-                    #            ],fluid=True,)
-                    #            ], width=12),
-                    #        ],no_gutters=True)
-                    #],lg=11)
-                    #    ]),
-
-                #dbc.Row([html.Hr()]),
-                #dbc.Row([
-                #    dbc.Col([
-                #    dbc.Container([
-                #        html.H2("Tabla Dinamica", className='title ml-2',style={'textAlign': 'left', 'color': '#FFFFFF'}),
-
-                #        utils_pivot_table.make_pivot_table(df)],id="Table_data",fluid=True)],width={'size': 12, 'offset': 0},align="center")
-                #],no_gutters=True),
                 dbc.Row([html.Hr()]),
-                ], color="primary", type="border",fullscreen=True,fullscreen_style={"background-color": "#444444"}),
+
                 ],fluid=True)
                 ],width=12,align="end")
                 ])
