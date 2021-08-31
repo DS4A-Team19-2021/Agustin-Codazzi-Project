@@ -24,6 +24,7 @@ from app import app
 # #call modules needed for callbacks
 from apps.home import layout_home
 from apps.pivot_table import layout_pivot
+from apps.home import layout_inicio
 #df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
 
 #cache configuration
@@ -41,8 +42,10 @@ def register_callbacks(app):
     @cache.memoize(timeout=TIMEOUT)
     @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
     def render_page_content(pathname):
-        if pathname in ["/", "/apps/home/layout_home"]:
+        if pathname in ["/apps/home/layout_home"]:
             return layout_home.layout
+        elif pathname in ["/"]:
+            return layout_inicio.layout
         elif pathname in ["/apps/pivot_table/layout_pivot"]:
             return layout_pivot.layout_pivot_table
         # If the user tries to reach a different page, return a 404 message
