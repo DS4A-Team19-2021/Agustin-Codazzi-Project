@@ -8,9 +8,9 @@ layout= html.Div([
         dbc.Col([
             dbc.Container([
                 html.Video(src="https://github.com/jamontanac/Tesis_Master/blob/master/Introduccio%CC%81n.mp4?raw=true",
-                           style={"height": "500", "width": "100%"},autoPlay=True,controls=True,preload="parts",
-                           loop=True,title="Video de prueba",accessKey="spacer",poster="https://raw.githubusercontent.com/jamontanac/Tesis_Master/master/Github_logo_black.png"),
+                           style={"height": "400", "width": "100%"},autoPlay=True,controls=True,preload="parts",
+                           loop=True,title="Video de descripción",accessKey="spacer"),
             ])
-        ],width=12,align="center")
+        ],width=10,align="center")
     ],justify="center")
 ])
