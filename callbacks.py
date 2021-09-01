@@ -44,7 +44,7 @@ def register_callbacks(app):
     def render_page_content(pathname):
         if pathname in ["/apps/home/layout_home"]:
             return layout_home.layout
-        elif pathname in ["/"]:
+        elif pathname in ["/","/apps/home/layout_inicio"]:
             return layout_inicio.layout
         elif pathname in ["/apps/pivot_table/layout_pivot"]:
             return layout_pivot.layout_pivot_table

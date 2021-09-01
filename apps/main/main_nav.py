@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output, State
 
 from app import app
 IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
-Logo_grupo="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/logo_igac.png"
+Logo_grupo="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/logo_igac_blanco_transparente.png"
 github_logo="https://github.com/jamontanac/Tesis_Master/raw/master/GitHub_logo.png"
 correlation_one_logo="https://www.correlation-one.com/hubfs/c1logo_color.png"
 menu_bar = [
@@ -53,7 +53,7 @@ navbar = dbc.Navbar(
                 no_gutters=True,
 
             ),
-            href="#",
+            href="/apps/home/layout_inicio",
         ),
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
         dbc.Collapse(
