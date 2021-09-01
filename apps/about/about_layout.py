@@ -1,0 +1,81 @@
+import dash_html_components as html
+import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+img_1="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/1-c.png"
+img_2="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/2-c-01.png"
+img_3="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/3-c-01.png"
+img_4="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/4-c-01.png"
+img_5="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/5-c-01.png"
+img_6="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/6-c-01.png"
+img_7="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/7-c-01.png"
+img_8="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/8-c-01.png"
+photo_main_style={"height":"85%","width":"95%"}
+photo_style={"height":"90%","width":"90%"}
+photo_bottom_style={"height":"85%","width":"100%"}
+layout= html.Div([
+    dbc.Row([
+        dbc.Row([
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_1,style=photo_main_style),
+                ])
+            ],width=11,align="center")
+        ],justify="center"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_2,style=photo_style),
+                ])
+            ],width=8,align="center"),
+            dbc.Col([],width=4),
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([],width=4),
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_3,style=photo_style),
+                ])
+            ],width=8,align="center")
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_4,style=photo_style),
+                ])
+            ],width=8,align="center"),
+            dbc.Col([],width=4),
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([],width=4),
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_5,style=photo_style),
+                ])
+            ],width=8,align="center"),
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_6,style=photo_style),
+                ])
+            ],width=8,align="center"),
+            dbc.Col([],width=4),
+
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([],width=4),
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_7,style=photo_style),
+                ])
+            ],width=8,align="center")
+        ],justify="between"),
+        dbc.Row([
+            dbc.Col([
+                dbc.Container([
+                    html.Img(src=img_8,style=photo_main_style),
+                ],fluid=True)
+            ],width=11,align="end")
+        ],justify="center"),
+    ],justify="center")
+])
