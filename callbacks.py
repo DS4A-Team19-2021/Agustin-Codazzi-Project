@@ -25,6 +25,7 @@ from app import app
 from apps.home import layout_home
 from apps.pivot_table import layout_pivot
 from apps.home import layout_inicio
+from apps.about import about_layout
 #df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
 
 #cache configuration
@@ -48,6 +49,8 @@ def register_callbacks(app):
             return layout_inicio.layout
         elif pathname in ["/apps/pivot_table/layout_pivot"]:
             return layout_pivot.layout_pivot_table
+        elif pathname in ["/apps/about/about_layout"]:
+            return about_layout.layout
         # If the user tries to reach a different page, return a 404 message
         return dbc.Jumbotron(
             [

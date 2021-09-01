@@ -9,7 +9,7 @@ layout= html.Div([
             dbc.Container([
                 html.Video(src="https://github.com/jamontanac/Tesis_Master/blob/master/Introduccio%CC%81n.mp4?raw=true",
                            style={"height": "400", "width": "100%"},autoPlay=True,controls=True,preload="parts",
-                           loop=True,title="Video de descripción",accessKey="spacer"),
+                           loop=True,title="Video de descripción"),
             ])
         ],width=10,align="center")
     ],justify="center")
