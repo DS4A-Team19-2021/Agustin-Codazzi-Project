@@ -120,7 +120,7 @@ layout= html.Div([
                                 dbc.Tab(label="Georeferenciación", tab_id="tab_map",children=[carta_mapa]),
 
 
-                                dbc.Tab(label="Proporción Taxonómica", tab_id="tab_tree",children=[carta_tree_map]),
+                                dbc.Tab(label="Proporción de Taxonomía", tab_id="tab_tree",children=[carta_tree_map]),
 
                             ],
                             id="tabs",
