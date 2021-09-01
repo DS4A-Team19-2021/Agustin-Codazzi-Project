@@ -19,7 +19,7 @@ layout_pivot_table=html.Div([
             dbc.Row([
                 dbc.Col([
                     dbc.Container([
-                        html.H2("Tabla Dinamica", className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                        html.H3("Desgloce de la taxonomía", className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
 
                         utils_pivot_table.make_pivot_table(df)], id="Table_data", fluid=True)], width={'size': 12, 'offset': 0},
                     align="center")

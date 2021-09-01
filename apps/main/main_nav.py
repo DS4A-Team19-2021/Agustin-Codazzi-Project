@@ -19,9 +19,9 @@ menu_bar = [
         dbc.NavLink("Tabla", active = "exact", href = "/apps/pivot_table/layout_pivot", id = "page-3-link")
     ),
     dbc.NavItem(
-        dbc.NavLink("About", active = False, href = "#", id = "page-4-link",disabled=True)
+        dbc.NavLink("Acerca del equipo 19", active = "exact", href = "/apps/about/about_layout", id = "page-4-link")
     ),
-    ##375A7F;
+
     dbc.Row([
 
         dbc.Col([
