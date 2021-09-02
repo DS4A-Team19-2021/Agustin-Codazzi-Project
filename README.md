@@ -9,7 +9,7 @@ This tool seeks to aid and make easier the process of taxonomic soil classificat
 This classification is based on the [USDA’s methodology](https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current project is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
 
 In order to achieve this, the following processes were done:
--	[USDA's Key to Soil Taxonomy]() was studied
+-	[USDA's Soil Taxonomy]() was studied
 -	EDA
 -	Data Cleaning
 -	Statistical Classification Algorithms
