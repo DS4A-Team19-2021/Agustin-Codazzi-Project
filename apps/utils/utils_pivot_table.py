@@ -14,7 +14,7 @@ def make_pivot_table(df):
             rows=["CLIMA_AMBIENTAL", "PAISAJE", 'TIPO_RELIEVE', 'FORMA_TERRENO', 'MATERIAL_PARENTAL_LITOLOGIA',
                   'ORDEN'],
             vals=["CODIGO"],
-        ), style={'height': '700px', 'overflow': 'scroll', 'resize': 'both'},
+        ), style={'height': '600px', 'overflow': 'scroll', 'resize': 'both','align':'center'},
     )
     return layout_pivot_table
 

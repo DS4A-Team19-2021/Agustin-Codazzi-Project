@@ -73,12 +73,13 @@ def register_callbacks(app):
         return is_open
 
     #Callbacks definidos para la carga de un archivo
+    @cache.memoize(timeout=TIMEOUT)
     def parse_contents(contents, filename, date):
         content_type, content_string = contents.split(',')
         decoded = base64.b64decode(content_string)
         columns_to_consider=["CLIMA_AMBIENTAL", "PAISAJE",
-                         'TIPO_RELIEVE', 'FORMA_TERRENO',
-                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                         "TIPO_RELIEVE", "FORMA_TERRENO",
+                         "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
                          "LATITUD","LONGITUD","ALTITUD","CODIGO"]
         try:
             if 'csv' in filename:
@@ -104,26 +105,42 @@ def register_callbacks(app):
         return condition
 
 
-
-    def update_table():
+    @app.callback(Output('Table_data','children'),Output('main_alert_tabla','children'),
+                  Input('upload-data_table', 'contents'),
+                  State('upload-data_table', 'filename'),State('upload-data_table', 'last_modified'))
+    def update_table(list_of_contents, list_of_names, list_of_dates):
         if list_of_contents is not None:
-            error_section = html.Div([
-                html.H2('Un error ocurrió al procesar el archivo {}, subido en la fecha {}'.format(filename,
-                                                                                                   datetime.datetime.fromtimestamp(
-                                                                                                       date))),
-                html.Br(),
-                html.H2(
-                    'Verifique que su archivo tiene el formato adeacuado y que contiene las columnas necesarias para renderizar la tabla')]
-                , className="text-danger", style={"align-text": "center"})
-            table_children = html.Div([
-                html.H2("Tabla Dinamica", className='title ml-2',
-                        style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                html.H4("Archivo Cargado: {}".format(filename), className='title ml-2',
-                        style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                html.H5("Fecha de Carga: {}".format(datetime.datetime.fromtimestamp(date)),
-                        className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
-                make_pivot_table(use)
-            ])
+            df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
+            if len(df) == 0:
+                error_section = html.Div([
+                    html.H2('Un error ocurrió al procesar el archivo {}, subido en la fecha {}'.format(filename,
+                                                                                                       datetime.datetime.fromtimestamp(date))),
+                    html.Br(),
+                    html.H2('Verifique que su archivo tiene el formato adeacuado y que contiene las columnas necesarias para renderizar la tabla')],
+                    className="text-danger", style={"align-text": "center"})
+                alert = dbc.Alert([html.H4("Un Error ha ocurrido al procesar el archivo {}".format(filename)),
+                                    html.Hr(),
+                                    html.P(
+                                        "Porfavor verifique que el archivo que usted está cargando un archivo que sea compitble para la aplicación"
+                                        "Recuerde que sólo los formatos (csv, xls, xlsx, xlsm) son formatos aceptados por esta aplicación. "
+                                        "En caso de que esté subiendo un archivo en este formato y encuentra este error por favor revise que su archivo contiene las "
+                                        "columnas necesarias para que la aplicación funcione.", className="mb-0")
+                                    ],
+                                   color="danger", dismissable=True,
+                                   duration=7000)
+                return error_section,alert
+
+            else:
+                table_children = html.Div([
+                    html.H4("Archivo Cargado: {}".format(filename), className='title ml-2',
+                            style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    html.H5("Fecha de Carga: {}".format(datetime.datetime.fromtimestamp(date)),
+                            className='title ml-2', style={'textAlign': 'left', 'color': '#FFFFFF'}),
+                    make_pivot_table(df)
+                ])
+                return table_children,dash.no_update
+        else:
+            return dash.no_update,dash.no_update
 
     @app.callback(Output('Mapa', 'figure'), Output('tree_map', 'figure'),
                   Output("carta_datos","children"), Output("filtro_clima","options"),
@@ -152,8 +169,8 @@ def register_callbacks(app):
                                    color="danger",dismissable=True,
                                    duration=7000)
 
-                dash.callback_context.inputs['upload-data.contents']=None
-                print(dash.callback_context.inputs['upload-data.contents'])
+                #dash.callback_context.inputs['upload-data.contents']=None
+                #print(dash.callback_context.inputs['upload-data.contents'])
                 return dash.no_update, dash.no_update, dash.no_update,\
                        dash.no_update, dash.no_update,\
                        dash.no_update, dash.no_update,\
@@ -183,8 +200,8 @@ def register_callbacks(app):
                            dash.no_update,dash.no_update
         else:
             df = get_data(["CLIMA_AMBIENTAL", "PAISAJE",
-                           'TIPO_RELIEVE', 'FORMA_TERRENO',
-                           'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                           "TIPO_RELIEVE", "FORMA_TERRENO",
+                           "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
                            "LATITUD", "LONGITUD", "ALTITUD", "CODIGO"]).dropna().reset_index(drop=True)
             conditions = get_conditions_dropdown(df, dropdown)
             data_alert = dbc.Alert(html.H2(

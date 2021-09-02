@@ -8,13 +8,13 @@ import dash_auth
 from callbacks import register_callbacks
 
 #dash instance
-from app import app
+from app import app, server
 
 #Dash custom modules
 from apps.main import main_nav, main_content, main_footer
-
+server=server
 #Basic auth definition
-USERNAMEINFO = [['user','12345']]
+USERNAMEINFO = [['IGAC_user','123456']]
 auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
 #main layout

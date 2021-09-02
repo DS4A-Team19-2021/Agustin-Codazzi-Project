@@ -14,5 +14,4 @@ flask_caching
 numpy
 dash-pivottable
 unidecode
-
-
+sqlalchemy

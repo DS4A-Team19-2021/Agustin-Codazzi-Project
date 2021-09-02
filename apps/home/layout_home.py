@@ -10,8 +10,8 @@ from apps.utils import utils_pivot_table
 from apps.utils.utils_getdata import get_data
 
 df=get_data(["CLIMA_AMBIENTAL", "PAISAJE",
-                         'TIPO_RELIEVE', 'FORMA_TERRENO',
-                         'MATERIAL_PARENTAL_LITOLOGIA', 'ORDEN',
+                         "TIPO_RELIEVE", "FORMA_TERRENO",
+                         "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
                          "LATITUD","LONGITUD","ALTITUD","CODIGO"]).dropna()
 
 
@@ -66,6 +66,7 @@ upload_component=dcc.Upload(
                                     'textAlign': 'center',
                                     'margin': '10px',
                                 },
+    multiple=False
                                 # Allow multiple files to be uploaded
 )
 
