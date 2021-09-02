@@ -2,14 +2,14 @@
 
 ## 1.	Description
 
-This project was conceived out of the necessity from the _Instituto Geográfico Agustín Codazzi_ (IGAC) of having a tool capable of performing automatic soil taxonomy classification, using data obtained in the field. 
+This project was conceived out of the necessity from the _Instituto Geográfico Agustín Codazzi_ (IGAC) of having a tool capable of performing automatic soil taxonomy classification, using data collected in the field. 
 
-This tool seeks to aid and make easier the process of classification performed by the edaphologist from the Instituto, whose goal is performing an inventory and cartography of soils in Colombia.  For this purpose, several models where trained using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
+This tool seeks to aid and make easier the process of taxonomic soil classification performed by the edaphologist from the Instituto, whose goal is to make an inventory and cartography of soils in Colombia.  For this purpose, in this project several models were trained using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
 
-This classification is based on the [USDA’s methodology]( https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current project is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
+This classification is based on the [USDA’s methodology](https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current project is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
 
-In order to achieve this, among other things, the following processes were done:
--	Taxonomic Soil Classification research??
+In order to achieve this, the following processes were done:
+-	[USDA's Key to Soil Taxonomy]() was studied
 -	EDA
 -	Data Cleaning
 -	Statistical Classification Algorithms
@@ -19,8 +19,9 @@ In order to achieve this, among other things, the following processes were done:
 -	Databases management
 -	Backend development
 
-This Project seeks to become the foundations of a deeper taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) by adding further models. Additionally, suggesting data entries standardization seeking to improve the databases quality and reducing the Data Cleaning processes in the future. 
-The Project is called CATS, which stands for __Clasificador AuTomático de Suelos__ in Spanish, or Automatic Soil Classifier. 
+This Project seeks to become the foundations of a deeper automatic taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) by adding further models. Additionally,  data entries standardization seeking to improve the databases quality and reducing the Data Cleaning processes in the future, was emphatically recommended.
+
+The Project is called _CATS_, which stands for __Clasificador Automático Taxonómico de Suelos__ in Spanish, or Automatic Soil Taxonomy Classifier. 
 
 ## 2.	Model
 	
