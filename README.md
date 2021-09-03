@@ -4,7 +4,7 @@
 
 This project was conceived out of the necessity from the _Instituto Geográfico Agustín Codazzi_ (IGAC) of having a tool capable of performing automatic soil taxonomy classification, using data collected in the field. 
 
-This tool seeks to aid and make easier the process of taxonomic soil classification performed by the edaphologists from the Instituto, whose goal is to make an inventory and cartography of the soils in Colombia.  For this purpose, several models were trained using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
+This tool seeks to aid and make easier the process of taxonomic soil classification performed by the [edaphologists](https://en.wikipedia.org/wiki/Edaphology) from the _Instituto_, whose goal is to make an inventory and cartography of the soils in Colombia.  For this purpose, several models were fitted and tested using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
 
 This classification is based on the [USDA’s methodology](https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current application is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
 
@@ -19,13 +19,14 @@ In order to achieve this, the following steps were taken:
 -	Databases management
 -	Backend development
 
-This Project seeks to become the foundations of a deeper automatic taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) by adding further models. Additionally,  data-entries standardization is highly recommended in order to improve the databases quality and reducing the Data Cleaning processes in the future.
+This Project seeks to become the foundations of a deeper automatic taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) that may be achieved by fitting further models. Additionally,  data-entry standardization is highly recommended, in order to improve the databases quality and minimizing __Data Cleaning__ processes in the future.
 
-The Project is called _CATS_, which stands for __Clasificador Automático Taxonómico de Suelos__ in Spanish, or Automatic Taxonomic Soil Classifier. 
+The Project is called ___CATS___, which stands for __Clasificador Automático Taxonómico de Suelos__ in Spanish, or Automatic Taxonomic Soil Classifier. 
+
 
 ## 2.	Model
 	
-In order to perform the taxonomic classification, several models were tested, such as:
+In order to perform the taxonomic classification, several models were fitted, such as:
 
 -	Random Forests
 -	Multinomial Regressions
@@ -40,18 +41,17 @@ The final model, obtained an __Accuracy__ of 94.2% using the __Test Dataset__.
 
 ## 3.	App Use
 
-Using the app, it’s possible to:
+By using the app, it’s possible to:
 *	Obtain predictions of data uploaded by the user
 *	Visualize and Interact with user-uploaded data and the original database
  
 The usage process is as follows:
-1.	Log in using the authorized credentials
+1.	Log in using authorized credentials
 2.	Visualize and interact with the data from the original database using the __Map__, __Treemap__ and __Pivot Table__
 3.	Filter the data using the filters located above the map
-4.	Obtain detailed information hovering over each entry point
-5.	Upload valid files (`.csv`, `.xls` or `.xlsx`)
-6.	The maps and graphs will be automatically refreshed 
-7.	Interact with the graphs
+4.	Obtain detailed information by hovering over each entry point plotted in the map
+5.	Upload valid files (`.csv`, `.xls` or `.xlsx`) (The maps and graphs will be automatically updated)
+7.	Interact with the map and graphs
 8.	Obtain and interpret the classifications performed by the model
 
 
@@ -67,12 +67,12 @@ Currently there are 4 API endpoints:
 	The API responds with a boolean, whether the API is online and able to respond, or not
 
 3.	`/API/predict`
-	With this, the user can request a __single__ prediction based on a set of 9 variables (__see below__) that are passed in a `JSON`-like structure. The response, in a `JSON` structure, 		contains the most likely prediction and the probability of being in each of the 5 possible results.
+	With this, the user can request a __single__ prediction based on a set of 9 variables (__see Sample `JSON` Structure below__) that are passed in a `JSON`-like structure. The response, in a `JSON` structure, the most likely prediction and the probability of being in each of the 5 possible results.
 
 4.	`/API/predict_many`
-	At this request, the API is able to perform several predictions in just one call.  A `JSON` format must be passed, containing multiple entries to be predicted, based on the set of 9 variables (__see below__). Once again, the response is ordered in a `JSON` format and contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. 
+	At this request, the API is able to perform several predictions in a single call.  A `JSON` format must be passed, containing the multiple observations to be predicted, based on the set of 9 variables (__see Sample `JSON` Structure below__). Once again, the response is ordered in a `JSON` format which contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. 
 
-This is the only way in which the probability of each classification is possible. 
+This is the only way in which the probability of each classification can be obtained. 
 
 
 ### Sample `JSON` structure
@@ -94,7 +94,7 @@ The following is a sample of how a request would look like in the `JSON` structu
 
 ### Request `JSON` structure detail
 
-The following table details the characteristics of the valid structure. All fields must be included, however, Random Forest algorithm can deal with `null` values, however using non-null values is encouraged for a better prediction.
+The following table details the characteristics of the valid structure. All fields __must__ be included. It is worth noting that the Random Forest algorithm can deal with `null` values, however, using non-null values is encouraged for a better prediction.
 
 | Variable                   | Type   | Title                      |
 |----------------------------|--------|----------------------------|
@@ -110,6 +110,3 @@ The following table details the characteristics of the valid structure. All fiel
 
 
 ![imagen](https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/logo_igac_fondo_blanco.png)
-
-
-
