@@ -9,7 +9,7 @@ from flask_caching import Cache
 import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-from apps.utils.utils_getdata import get_data
+from apps.utils.utils_getdata import get_data, standarised_string
 from apps.utils.utils_pivot_table import make_pivot_table
 from apps.utils.utils_plots import Make_map
 from apps.utils.utils_tree_map import Make_tree_map
@@ -26,7 +26,6 @@ from apps.home import layout_home
 from apps.pivot_table import layout_pivot
 from apps.home import layout_inicio
 from apps.about import about_layout
-#df=get_data(["CLIMA_AMBIENTAL","FORMA_TERRENO","MATERIAL_PARENTAL_LITOLOGIA","ORDEN","PAISAJE"]).dropna()
 
 #cache configuration
 TIMEOUT = 240
@@ -90,6 +89,8 @@ def register_callbacks(app):
                 # Assume that the user uploaded an excel file
                 df = pd.read_excel(io.BytesIO(decoded))
                 df = df[columns_to_consider]
+            # put df in ETL
+            # put df in the check of ORDEN
 
             return df, filename, date
         except Exception as e:
@@ -221,19 +222,5 @@ def register_callbacks(app):
 
 
 
-            #raise PreventUpdate
 
-
-
-
-
-
-    #@app.callback(Output("Download_file", "data"),
-    #"Table_data"
-    #              [Input("Boton_download", "n_clicks")],
-    #              prevent_initial_call=True)
-    #def generate_csv(n_nlicks):
-    #    return dcc.send_data_frame(df.to_csv, filename="prueba.csv")
-
-    #return {"color":"primary", }
     

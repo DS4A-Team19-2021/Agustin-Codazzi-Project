@@ -1,10 +1,11 @@
 from sqlalchemy import create_engine
-
-host = 'historico.cu8inytluu1x.us-east-1.rds.amazonaws.com'
-port = 5432
-user = 'postgres'
-password = 'datascience4all-equipo19'
-database = 'postgres'
+import json
+x=json.load(open("database_keys.json","r"))
+host = x["host"]
+port = x["port"]
+user = x["user"]
+password = x["password"]
+database = x["database"]
 connDB = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{database}')
 conn = connDB.raw_connection()
 cur = conn.cursor()
