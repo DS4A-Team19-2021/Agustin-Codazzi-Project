@@ -59,17 +59,16 @@ The usage process is as follows:
 
 If the user wishes to by-pass the Dashboard, this can be done by interacting directly with the project's API.
 
-Currently there are 4 API endpoints:
-1.	`/API/(NO RECUERDO EL NOMBRE DEL PRIMERO)`
-	This allows to blablabla
+Currently there are 3 API Endpoints:
 
-2.	`/API/status/`
-	The API responds with a boolean, whether the API is online and able to respond, or not
+1.	`/api/status/`
+	Pings the API; the API responds with a boolean, whether the API is online and able to respond, or not.
+	
 
-3.	`/API/predict`
-	With this, the user can request a __single__ prediction based on a set of 9 variables (__see Sample `JSON` Structure below__) that are passed in a `JSON`-like structure. The response, in a `JSON` structure, the most likely prediction and the probability of being in each of the 5 possible results.
+2.	`/api/predict`
+	With this, the user can request a __single__ prediction based on a set of 9 variables (__see Sample `JSON` Structure below__) that are passed in a `JSON`-like structure. The response, in again a `JSON` structure, the most likely prediction and the probability of being in each of the 5 possible taxonomic orders.
 
-4.	`/API/predict_many`
+3.	`/api/predict_many`
 	At this request, the API is able to perform several predictions in a single call.  A `JSON` format must be passed, containing the multiple observations to be predicted, based on the set of 9 variables (__see Sample `JSON` Structure below__). Once again, the response is ordered in a `JSON` format which contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. 
 
 This is the only way in which the probability of each classification can be obtained. 
@@ -86,6 +85,7 @@ The following is a sample of how a request would look like in the `JSON` structu
  'EPIPEDON': 'Ocrico',
  'FAMILIA_TEXTURAL: 'Fina',
  'H1_ESPESOR': 17.0,
+ 'H1_RESULTADO_ph': 4.5,
  'H2_ESPESOR: 38.0,
  'PROFUNDIDAD_MAXIMA': 110.0
 }
