@@ -13,7 +13,7 @@ cache = Cache(app.server, config={
 
 
 
-#@cache.memoize(timeout=TIMEOUT)
+@cache.memoize(timeout=TIMEOUT)
 def get_data(column_name):
     my_query = 'SELECT ' + '"' + '", "'.join(column_name) + '"' + ' FROM "SUELOS";'
     df=pd.read_sql_query(my_query ,sqlconnect.connDB)
@@ -26,4 +26,5 @@ def get_data(column_name):
 def standarised_string(x):
     no_accents = unidecode.unidecode(x)
     return no_accents.replace("_"," ").lower().capitalize()
+
 
