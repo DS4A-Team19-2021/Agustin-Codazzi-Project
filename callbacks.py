@@ -81,6 +81,7 @@ def register_callbacks(app):
         #                 "TIPO_RELIEVE", "FORMA_TERRENO",
         #                 "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
         #                 "LATITUD","LONGITUD","ALTITUD","CODIGO"]
+        #print(filename)
         try:
             if 'csv' in filename:
                 df = pd.read_csv(io.StringIO(decoded.decode('utf-8')))
@@ -88,23 +89,25 @@ def register_callbacks(app):
             elif 'xls' in filename:
                 # Assume that the user uploaded an excel file
                 df = pd.read_excel(io.BytesIO(decoded))
-            # put df in ETL
-            try:
-                clean_df= ETL(df)
-                #check if the dataframe has ORDEN
-                if "ORDEN" in clean_df.columns:
-                    return clean_df, filename, date
-                else:
-                    return pd.DataFrame([]), filename, date
 
-            except CustomError as e:
-                print("problema en el ETL")
-                return pd.DataFrame([]), filename, date
+        except Exception as e:
+            #print("problema con el archivo")
+            return pd.DataFrame([]), filename, date
 
+        try:
+            print(df.columns)
+            clean_df = ETL(df)
+            # check if the dataframe has ORDEN
 
-            return df, filename, date
+            if "ORDEN" in clean_df.columns:
+                return clean_df, filename, date
+            else:
+                return pd.DataFrame([[]]), filename, date
+
         except Exception as e:
             return pd.DataFrame([]), filename, date
+
+
     def get_conditions_dropdown(df,dropdown):
         filtros = ["CLIMA_AMBIENTAL", "PAISAJE", "FORMA_TERRENO", "MATERIAL_PARENTAL_LITOLOGIA"]
         condition = pd.Series(np.ones(len(df), dtype=bool))
@@ -165,6 +168,7 @@ def register_callbacks(app):
     def update_maps(filtro_clima,filtro_paisaje,filtro_forma_terreno,filtro_material_parental,list_of_contents, list_of_names, list_of_dates):
         dropdown = [filtro_clima, filtro_paisaje, filtro_forma_terreno, filtro_material_parental]
         if list_of_contents is not None:
+
             df, filename, date = parse_contents(list_of_contents, list_of_names, list_of_dates)
             if len(df) == 0:
                 #alert1 = dbc.Alert("There was an error processing this file.",
