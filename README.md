@@ -4,11 +4,11 @@
 
 This project was conceived out of the necessity from the _Instituto Geográfico Agustín Codazzi_ (IGAC) of having a tool capable of performing automatic soil taxonomy classification, using data collected in the field. 
 
-This tool seeks to aid and make easier the process of taxonomic soil classification performed by the edaphologist from the Instituto, whose goal is to make an inventory and cartography of soils in Colombia.  For this purpose, in this project several models were trained using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
+This tool seeks to aid and make easier the process of taxonomic soil classification performed by the edaphologists from the Instituto, whose goal is to make an inventory and cartography of the soils in Colombia.  For this purpose, several models were trained using a database with more than 12,000 observations, which recorded 209 different variables, collected in the _Cundiboyacense_ Plateau.
 
-This classification is based on the [USDA’s methodology](https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current project is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
+This classification is based on the [USDA’s methodology](https://www.nrcs.usda.gov/wps/portal/nrcs/main/soils/survey/class/). The current application is capable of classifying the first category in said taxonomic hierarchy (_i.e._ Order).
 
-In order to achieve this, the following processes were done:
+In order to achieve this, the following steps were taken:
 -	[USDA's Soil Taxonomy]() was studied
 -	EDA
 -	Data Cleaning
@@ -19,13 +19,14 @@ In order to achieve this, the following processes were done:
 -	Databases management
 -	Backend development
 
-This Project seeks to become the foundations of a deeper automatic taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) by adding further models. Additionally,  data entries standardization seeking to improve the databases quality and reducing the Data Cleaning processes in the future, was emphatically recommended.
+This Project seeks to become the foundations of a deeper automatic taxonomic classification (_i.e._ Suborder, Great Group, Sub Group, etc.) by adding further models. Additionally,  data-entries standardization is highly recommended in order to improve the databases quality and reducing the Data Cleaning processes in the future.
 
-The Project is called _CATS_, which stands for __Clasificador Automático Taxonómico de Suelos__ in Spanish, or Automatic Soil Taxonomy Classifier. 
+The Project is called _CATS_, which stands for __Clasificador Automático Taxonómico de Suelos__ in Spanish, or Automatic Taxonomic Soil Classifier. 
 
 ## 2.	Model
 	
 In order to perform the taxonomic classification, several models were tested, such as:
+
 -	Random Forests
 -	Multinomial Regressions
 -	Stacked Models
@@ -56,10 +57,56 @@ The usage process is as follows:
 
 ## 4.	API
 
-If the user wishes to by-pass the Dashboard, this can be done by interacting directly with the API. This requires the use of `.json` files. With this method, up to 2000 predictions can be obtained in X seconds. 
+If the user wishes to by-pass the Dashboard, this can be done by interacting directly with the project's API.
 
-By interacting directly with the API, the output is the taxonomic classification and the probability of each of the possible outcomes (only obtained via this method). 
+Currently there are 4 API endpoints:
+1.	`/API/(NO RECUERDO EL NOMBRE DEL PRIMERO)`
+	This allows to blablabla
 
+2.	`/API/status/`
+	The API responds with a boolean, whether the API is online and able to respond, or not
+
+3.	`/API/predict`
+	With this, the user can request a __single__ prediction based on a set of 9 variables (__see below__) that are passed in a `JSON`-like structure. The response, in a `JSON` structure, 		contains the most likely prediction and the probability of being in each of the 5 possible results.
+
+4.	`/API/predict_many`
+	At this request, the API is able to perform several predictions in just one call.  A `JSON` format must be passed, containing multiple entries to be predicted, based on the set of 9 variables (__see below__). Once again, the response is ordered in a `JSON` format and contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. 
+
+This is the only way in which the probability of each classification is possible. 
+
+
+### Sample `JSON` structure
+
+The following is a sample of how a request would look like in the `JSON` structure:
+
+```
+{'ALTITUD': 291.0,
+ 'CONTENIDO_CENIZA_VOLCANICA': 'False',
+ 'DRENAJE_NATURAL': 'Pobre',
+ 'EPIPEDON': 'Ocrico',
+ 'FAMILIA_TEXTURAL: 'Fina',
+ 'H1_ESPESOR': 17.0,
+ 'H2_ESPESOR: 38.0,
+ 'PROFUNDIDAD_MAXIMA': 110.0
+}
+```
+
+
+### Request `JSON` structure detail
+
+The following table details the characteristics of the valid structure. All fields must be included, however, Random Forest algorithm can deal with `null` values, however using non-null values is encouraged for a better prediction.
+
+| Variable                   | Type   | Title                      |
+|----------------------------|--------|----------------------------|
+| ALTITUD                    | number | Altitud                    |
+| CONTENIDO_CENIZA_VOLCANICA | string | Contenido Ceniza Volcanica |
+| DRENAJE_NATURAL            | string | Drenaje Natural            |
+| EPIPEDON                   | string | Epipedon                   |
+| FAMILIA_TEXTURAL           | string | Familia Textural           |
+| H1_ESPESOR                 | number | H1 Espesor                 |
+| H1_RESULTADO_ph            | number | H1 Resultado pH            |
+| H2_ESPESOR                 | number | H2 Espesor                 |
+| PROFUNDIDAD_MAXIMA         | number | Profundidad Maxima         |
 
 
 ![imagen](https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/logo_igac_fondo_blanco.png)
