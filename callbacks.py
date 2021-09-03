@@ -10,6 +10,7 @@ import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from apps.utils.utils_getdata import get_data, standarised_string
+from apps.utils.ETL import ETL, extract_data_to_predict
 from apps.utils.utils_pivot_table import make_pivot_table
 from apps.utils.utils_plots import Make_map
 from apps.utils.utils_tree_map import Make_tree_map
@@ -76,21 +77,30 @@ def register_callbacks(app):
     def parse_contents(contents, filename, date):
         content_type, content_string = contents.split(',')
         decoded = base64.b64decode(content_string)
-        columns_to_consider=["CLIMA_AMBIENTAL", "PAISAJE",
-                         "TIPO_RELIEVE", "FORMA_TERRENO",
-                         "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
-                         "LATITUD","LONGITUD","ALTITUD","CODIGO"]
+        #columns_to_consider=["CLIMA_AMBIENTAL", "PAISAJE",
+        #                 "TIPO_RELIEVE", "FORMA_TERRENO",
+        #                 "MATERIAL_PARENTAL_LITOLOGIA", "ORDEN",
+        #                 "LATITUD","LONGITUD","ALTITUD","CODIGO"]
         try:
             if 'csv' in filename:
                 df = pd.read_csv(io.StringIO(decoded.decode('utf-8')))
-                df = df[columns_to_consider]
 
             elif 'xls' in filename:
                 # Assume that the user uploaded an excel file
                 df = pd.read_excel(io.BytesIO(decoded))
-                df = df[columns_to_consider]
             # put df in ETL
-            # put df in the check of ORDEN
+            try:
+                clean_df= ETL(df)
+                #check if the dataframe has ORDEN
+                if "ORDEN" in clean_df.columns:
+                    return clean_df, filename, date
+                else:
+                    return pd.DataFrame([]), filename, date
+
+            except CustomError as e:
+                print("problema en el ETL")
+                return pd.DataFrame([]), filename, date
+
 
             return df, filename, date
         except Exception as e:

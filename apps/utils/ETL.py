@@ -8,6 +8,7 @@ def ETL(x):
          'DRENAJE_NATURAL', 'H1_ESPESOR', 'H1_RESULTADO_ph', 'H2_ESPESOR', 'EPIPEDON', 'FAMILIA_TEXTURAL',
          'PROFUNDIDAD MAXIMA']
   if not set(uso).issubset(x_df.columns):
+    print(x_df.columns)
     raise CustomError("No se encontraron todas las columnas requeridas")
 
   # CLIMA_AMBIENTAL
@@ -122,4 +123,7 @@ def ETL(x):
 
   return x_df
 
-def
+def extract_data_to_predict(x):
+    uso = [ 'ALTITUD','CONTENIDO_CENIZA_VOLCANICA','DRENAJE_NATURAL','EPIPEDON',  'FAMILIA_TEXTURAL', 'H1_ESPESOR', 'H1_RESULTADO_ph','H2_ESPESOR',
+           'PROFUNDIDAD MAXIMA']
+    return 0
