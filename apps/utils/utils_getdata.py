@@ -15,8 +15,8 @@ cache = Cache(app.server, config={
 
 @cache.memoize(timeout=TIMEOUT)
 def get_data(column_name):
-    #my_query = 'SELECT ' + '"' + '", "'.join(column_name) + '"' + ' FROM "SUELOS";'
-    my_query = 'SELECT ' + '"' + '", "'.join(column_name) + '"' + ' FROM "SUELOS" LIMIT 10;'
+    my_query = 'SELECT ' + '"' + '", "'.join(column_name) + '"' + ' FROM "SUELOS";'
+    #my_query = 'SELECT ' + '"' + '", "'.join(column_name) + '"' + ' FROM "SUELOS" LIMIT 10;'
     df=pd.read_sql_query(my_query ,sqlconnect.connDB)
     return df
 

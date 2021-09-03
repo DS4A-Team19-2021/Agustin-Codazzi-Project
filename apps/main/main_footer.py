@@ -10,13 +10,13 @@ plotly_logo="https://dash.plotly.com/docs/assets/images/light_plotly_dash_logo.p
 dash_logo="https://plotly-marketing-website.cdn.prismic.io/plotly-marketing-website/948b6663-9429-4bd6-a4cc-cb33231d4532_logo-plotly.svg"
 info_general = html.Div([
         dcc.Markdown('''
-##### Agradecimientos a los integrantes del equipo 19:
+##### Integrantes del equipo 19:
 ---
 [__Jose Alejandro Montaña__](https://www.linkedin.com/in/jose-alejandro-montana-cortes-011888206/) | [__Diana Vélez__](https://www.linkedin.com/in/diana-velez-alvarez/) | [__Juan Sebastian Serrano__](https://www.linkedin.com/in/juan-sebastian-serrano-saavedra/) | [__Jaime Muñoz__](https://www.linkedin.com/in/jaime-roberto-mu%C3%B1oz-luque-m-sc-76a79028/) |
 
 [__Fransisco Lara__](https://www.linkedin.com/in/francisco-javier-lara-carrillo-79217064/) | [__Endwyr Salas__](https://www.linkedin.com/in/endhwyr-salas-322867211).
 ''')
-    ],style={"font-size":"12px","align-text":"right"})
+    ],style={"font-size":"13px","align-text":"right"})
 
 
 layout= html.Div([
