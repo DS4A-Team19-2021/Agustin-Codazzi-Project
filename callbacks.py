@@ -108,7 +108,7 @@ def register_callbacks(app):
                 #return pd.DataFrame([[]]), filename, date
 
         except Exception as e:
-            print(e)
+            #print(e)
             return pd.DataFrame([]), filename, date
 
 
