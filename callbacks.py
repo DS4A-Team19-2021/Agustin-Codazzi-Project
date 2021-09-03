@@ -10,7 +10,8 @@ import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from apps.utils.utils_getdata import get_data, standarised_string
-from apps.utils.ETL import ETL, extract_data_to_predict
+from apps.utils.ETL import ETL
+from apps.utils.consultAPI import get_predictions
 from apps.utils.utils_pivot_table import make_pivot_table
 from apps.utils.utils_plots import Make_map
 from apps.utils.utils_tree_map import Make_tree_map
@@ -73,7 +74,7 @@ def register_callbacks(app):
         return is_open
 
     #Callbacks definidos para la carga de un archivo
-    @cache.memoize(timeout=TIMEOUT)
+    #@cache.memoize(timeout=TIMEOUT)
     def parse_contents(contents, filename, date):
         content_type, content_string = contents.split(',')
         decoded = base64.b64decode(content_string)
@@ -93,18 +94,21 @@ def register_callbacks(app):
         except Exception as e:
             #print("problema con el archivo")
             return pd.DataFrame([]), filename, date
-
+        print("procese el archivo")
         try:
-            print(df.columns)
             clean_df = ETL(df)
             # check if the dataframe has ORDEN
-
+            #print(clean_df)
             if "ORDEN" in clean_df.columns:
                 return clean_df, filename, date
             else:
-                return pd.DataFrame([[]]), filename, date
+                # consult the API to get the prediction
+                return get_predictions(clean_df), filename, date
+                #data=extract_data_to_predict(clean_df)
+                #return pd.DataFrame([[]]), filename, date
 
         except Exception as e:
+            print(e)
             return pd.DataFrame([]), filename, date
 
 

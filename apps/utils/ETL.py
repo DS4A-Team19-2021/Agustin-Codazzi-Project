@@ -1,11 +1,9 @@
 from apps.utils.utils_getdata import standarised_string
 import pandas as pd
-import unidecode
+#import unidecode
 import numpy as np
 
-#def standarised_string(x):
-#    no_accents = unidecode.unidecode(x)
-#    return no_accents.replace("_"," ").lower().capitalize()
+
 
 
 
@@ -117,10 +115,9 @@ def ETL(x):
         x_df[i] = x_df[i].apply(standarised_string)
 
     return x_df
-#df_otro=pd.read_csv("/Users/jamontanac/Documents/DS4A/Learning Dash/Data3.csv")
-#print(ETL(df_otro),)
-#print("ORDEN" in ETL(df_otro).columns)
+
 def extract_data_to_predict(x):
     uso = [ 'ALTITUD','CONTENIDO_CENIZA_VOLCANICA','DRENAJE_NATURAL','EPIPEDON',  'FAMILIA_TEXTURAL', 'H1_ESPESOR', 'H1_RESULTADO_ph','H2_ESPESOR',
            'PROFUNDIDAD_MAXIMA']
-    return 0
+    return x[uso]
+
