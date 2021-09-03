@@ -36,7 +36,7 @@ cache = Cache(app.server, config={
     'CACHE_DIR': 'cache-directory',
     'CACHE_THRESHOLD': 20
 })
-
+photo_style={"height":"90%","width":"90%"}
 #Entire callbacks definition
 def register_callbacks(app):
 
@@ -60,6 +60,16 @@ def register_callbacks(app):
                 html.P(f"The pathname {pathname} was not recognised..."),
                 html.Br(),
                 html.P(f"Check again what you are requesting")
+                dbc.Row([
+                    dbc.Col([
+                        dbc.Container([
+                            html.Img(src="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Error_image.png",
+                                     style=photo_main_style)
+                        ])
+
+                    ])
+                ])
+
             ],fluid=False
         )
 
