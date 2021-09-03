@@ -15,3 +15,5 @@ numpy
 dash-pivottable
 unidecode
 sqlalchemy
+psycopg2-binary
+scikit-learn==0.23.1

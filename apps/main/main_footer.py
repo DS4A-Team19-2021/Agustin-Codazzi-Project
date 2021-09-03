@@ -14,7 +14,7 @@ info_general = html.Div([
 ---
 [__Jose Alejandro Montaña__](https://www.linkedin.com/in/jose-alejandro-montana-cortes-011888206/) | [__Diana Vélez__](https://www.linkedin.com/in/diana-velez-alvarez/) | [__Juan Sebastian Serrano__](https://www.linkedin.com/in/juan-sebastian-serrano-saavedra/) | [__Jaime Muñoz__](https://www.linkedin.com/in/jaime-roberto-mu%C3%B1oz-luque-m-sc-76a79028/) |
 
-[__Fransisco Lara__](https://www.linkedin.com/in/francisco-javier-lara-carrillo-79217064/) | __Endwyr Salas__.
+[__Fransisco Lara__](https://www.linkedin.com/in/francisco-javier-lara-carrillo-79217064/) | [__Endwyr Salas__](https://www.linkedin.com/in/endhwyr-salas-322867211).
 ''')
     ],style={"font-size":"12px","align-text":"right"})
 

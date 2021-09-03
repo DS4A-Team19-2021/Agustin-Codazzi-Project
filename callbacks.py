@@ -94,7 +94,7 @@ def register_callbacks(app):
         except Exception as e:
             #print("problema con el archivo")
             return pd.DataFrame([]), filename, date
-        print("procese el archivo")
+        #print("procese el archivo")
         try:
             clean_df = ETL(df)
             # check if the dataframe has ORDEN

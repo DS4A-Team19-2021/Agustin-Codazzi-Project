@@ -7,7 +7,8 @@ img_3="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Projec
 img_4="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/4-c-01.png"
 img_5="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/5-c-01.png"
 img_6="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/6-c-01.png"
-img_7="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/7-c-01.png"
+#img_7="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/7-c-01.png"
+img_7="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/7-01.png"
 img_8="https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/Integrantes/8-c-01.png"
 photo_main_style={"height":"85%","width":"95%"}
 photo_style={"height":"90%","width":"90%"}
@@ -24,7 +25,8 @@ layout= html.Div([
         dbc.Row([
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_2,style=photo_style),
+                html.A(
+                    html.Img(src=img_2,style=photo_style),href="https://www.linkedin.com/in/diana-velez-alvarez/"),
                 ])
             ],width=8,align="center"),
             dbc.Col([],width=4),
@@ -33,14 +35,16 @@ layout= html.Div([
             dbc.Col([],width=4),
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_3,style=photo_style),
+                html.A(
+                    html.Img(src=img_3,style=photo_style),href="https://www.linkedin.com/in/francisco-javier-lara-carrillo-79217064/"),
                 ])
             ],width=8,align="center")
         ],justify="between"),
         dbc.Row([
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_4,style=photo_style),
+                html.A(
+                    html.Img(src=img_4,style=photo_style),href="https://www.linkedin.com/in/jaime-roberto-mu%C3%B1oz-luque-m-sc-76a79028/"),
                 ])
             ],width=8,align="center"),
             dbc.Col([],width=4),
@@ -49,14 +53,16 @@ layout= html.Div([
             dbc.Col([],width=4),
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_5,style=photo_style),
+                html.A(
+                    html.Img(src=img_5,style=photo_style),href="https://www.linkedin.com/in/jose-alejandro-montana-cortes-011888206/"),
                 ])
             ],width=8,align="center"),
         ],justify="between"),
         dbc.Row([
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_6,style=photo_style),
+                html.A(
+                    html.Img(src=img_6,style=photo_style),href="https://www.linkedin.com/in/juan-sebastian-serrano-saavedra/"),
                 ])
             ],width=8,align="center"),
             dbc.Col([],width=4),
@@ -66,7 +72,8 @@ layout= html.Div([
             dbc.Col([],width=4),
             dbc.Col([
                 dbc.Container([
-                    html.Img(src=img_7,style=photo_style),
+                html.A(
+                    html.Img(src=img_7,style=photo_style),href="https://www.linkedin.com/in/endhwyr-salas-322867211"),
                 ])
             ],width=8,align="center")
         ],justify="between"),
