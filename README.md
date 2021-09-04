@@ -129,4 +129,14 @@ The following table details the characteristics of the valid structure. All fiel
 | PROFUNDIDAD_MAXIMA         | number | Profundidad Maxima         |
 
 
+## 5.	Team Members:
+
+-	[Diana María Vélez Álvarez](https://www.linkedin.com/in/diana-velez-alvarez/)
+-	[José Alejandro Montaña Cortés](https://www.linkedin.com/in/jose-alejandro-montana-cortes-011888206/)
+-	[Jaime Roberto Muñoz Luque](https://www.linkedin.com/in/jaime-roberto-mu%C3%B1oz-luque-m-sc-76a79028/)
+-	[Endhwyr José Salas Redondo](https://www.linkedin.com/in/endhwyr-salas-322867211/)
+-	[Francisco Javier Lara Carrillo](https://www.linkedin.com/in/francisco-javier-lara-carrillo-79217064/)
+-	[Juan Sebastián Serrano Saavedra](https://www.linkedin.com/in/juan-sebastian-serrano-saavedra/)
+
+
 ![imagen](https://raw.githubusercontent.com/DS4A-Team19-2021/Agustin-Codazzi-Project/main/Images/logo_igac_fondo_blanco.png)
