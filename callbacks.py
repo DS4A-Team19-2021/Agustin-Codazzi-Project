@@ -36,7 +36,7 @@ cache = Cache(app.server, config={
     'CACHE_DIR': 'cache-directory',
     'CACHE_THRESHOLD': 20
 })
-photo_style={"height":"90%","width":"90%"}
+photo_main_style={"height":"90%","width":"90%"}
 #Entire callbacks definition
 def register_callbacks(app):
 
@@ -59,7 +59,7 @@ def register_callbacks(app):
                 html.Hr(),
                 html.P(f"The pathname {pathname} was not recognised..."),
                 html.Br(),
-                html.P(f"Check again what you are requesting")
+                html.P(f"Check again what you are requesting"),
                 dbc.Row([
                     dbc.Col([
                         dbc.Container([
