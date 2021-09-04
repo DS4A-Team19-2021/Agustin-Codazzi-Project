@@ -1,5 +1,11 @@
 # Agustin-Codazzi-Project
 
+Credentials to login to the [application](www.cats19.tech) 
+ID: IGAC_user
+Password: 123456
+
+-------
+
 ## 1.	Description
 
 This project was conceived out of the necessity from the _Instituto Geográfico Agustín Codazzi_ (IGAC) of having a tool capable of performing automatic soil taxonomy classification, using data collected in the field. 
@@ -69,9 +75,11 @@ Currently there are 3 API Endpoints:
 	With this, the user can request a __single__ prediction based on a set of 9 variables (__see Sample `JSON` Structure below__) that are passed in a `JSON`-like structure. The response, in again a `JSON` structure, the most likely prediction and the probability of being in each of the 5 possible taxonomic orders.
 
 3.	`/api/predict_many`
-	At this request, the API is able to perform several predictions in a single call.  A `JSON` format must be passed, containing the multiple observations to be predicted, based on the set of 9 variables (__see Sample `JSON` Structure below__). Once again, the response is ordered in a `JSON` format which contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. 
+	At this request, the API is able to perform several predictions in a single call.  A `JSON` format must be passed, containing the multiple observations to be predicted, based on the set of 9 variables (__see Sample `JSON` Structure below__). Once again, the response is ordered in a `JSON` format which contains the predictions, as well as the probabilities of each. This is a highly efficient method of communication with the application, considerably reducing the response time by __several orders of magnitude__. For example, this method is capable of performing up to 4000 classifications in less than a second. 
 
 This is the only way in which the probability of each classification can be obtained. 
+
+**NOTE** Numerical values __CAN'T__ contain _null_ values. 
 
 
 ### Sample `JSON` structure
