@@ -6,13 +6,14 @@ The following credentials are to be used to login to the [application](https://w
 
 Testing data can be found at [`./Datos_prueba.zip/`](https://github.com/DS4A-Team19-2021/Agustin-Codazzi-Project/blob/main/Datos_prueba.zip)
 
-This `.zip` files contains two testing files:
+This `.zip` file contains two testing files:
 
 1.	`Datos_sin_Clasificacion.csv`
 2.	`Datos_con_Clasificacion.csv`
 
-The first file, tests the classification model and updates the plots accordingly; since it doesn't contain the `ORDER` column
-The second file, while it doesn't perform a classification, it generates the plot in the Map, Treemap and Pivot Table; this data is not classified since the `ORDER` column is included
+The first file, tests the classification model and updates the plots accordingly; since it doesn't contain the `ORDER` column.
+
+The second file, while it doesn't perform a classification, it generates the plot on the Map, Treemap and Pivot Table; this data is not classified since the `ORDER` column is included.
 
 -------
 
